@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="icons/bobr.ico" />
+    <meta charset="UTF-8" />
+    <!-- this was absolutely not vibe-coded -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bober.pics</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "MS Sans Serif", sans-serif;
+        background: #c0c0c0;
+        height: 100vh;
+        overflow: hidden;
+        font-size: 13px;
+      }
+
+      .app-container {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        border: 2px outset #c0c0c0;
+      }
+
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 20px;
+        background: #c0c0c0;
+      }
+
+      .sidebar {
+        width: 320px;
+        min-width: 320px;
+        max-width: 320px;
+        background: #c0c0c0;
+        padding: 8px;
+        overflow-y: auto;
+        border-left: 2px inset #c0c0c0;
+        flex-shrink: 0;
+      }
+
+      h1 {
+        color: #000080;
+        font-size: 28px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        text-align: center;
+        font-family: "MS Sans Serif", sans-serif;
+      }
+
+      #boberImage {
+        max-width: 70vw;
+        max-height: 60vh;
+        border: 2px inset #c0c0c0;
+        cursor: pointer;
+        background: #ffffff;
+      }
+
+      #boberImage:hover {
+        border: 2px outset #c0c0c0;
+      }
+
+      .control-group {
+        background: #c0c0c0;
+        padding: 8px;
+        border: 2px inset #c0c0c0;
+        margin-bottom: 8px;
+      }
+
+      .control-group h3 {
+        color: #000000;
+        margin-bottom: 8px;
+        text-align: left;
+        font-size: 13px;
+        font-weight: bold;
+        font-family: "MS Sans Serif", sans-serif;
+      }
+
+      button {
+        background: #c0c0c0;
+        color: #000000;
+        border: 2px outset #c0c0c0;
+        padding: 6px 10px;
+        cursor: pointer;
+        font-size: 13px;
+        margin: 2px;
+        font-weight: normal;
+        width: 100%;
+        margin-bottom: 4px;
+        font-family: "MS Sans Serif", sans-serif;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      button img {
+        width: 20px;
+        height: 20px;
+        image-rendering: pixelated;
+      }
+
+      button:hover {
+        background: #dfdfdf;
+      }
+
+      button:active {
+        border: 2px inset #c0c0c0;
+        background: #a0a0a0;
+      }
+
+      .slider-group {
+        margin: 8px 0;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: normal;
+        color: #000000;
+        font-size: 13px;
+        font-family: "MS Sans Serif", sans-serif;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        margin-bottom: 8px;
+        height: 16px;
+        background: #c0c0c0;
+        border: 1px inset #c0c0c0;
+      }
+
+      .fun-stats {
+        text-align: left;
+        margin-bottom: 8px;
+        font-size: 13px;
+        color: #000000;
+        background: #c0c0c0;
+        padding: 8px;
+        border: 2px inset #c0c0c0;
+        font-family: "MS Sans Serif", sans-serif;
+      }
+
+      .easter-egg {
+        position: fixed;
+        font-size: 20px;
+        pointer-events: none;
+        z-index: 1000;
+        animation: float 3s ease-out forwards;
+        color: #000080;
+        font-family: "MS Sans Serif", sans-serif;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+      }
+
+      .flying-bober {
+        position: fixed;
+        border: 1px solid #808080;
+        pointer-events: none;
+        z-index: 999;
+        transition: none;
+      }
+
+      @keyframes fly {
+        0% {
+          transform: translateX(-100px) rotate(0deg);
+        }
+        100% {
+          transform: translateX(calc(100vw + 100px)) rotate(360deg);
+        }
+      }
+
+      @keyframes flyDiagonal {
+        0% {
+          transform: translate(-100px, 100vh) rotate(0deg) scale(0.2);
+        }
+        50% {
+          transform: translate(50vw, 30vh) rotate(180deg) scale(1.5);
+        }
+        100% {
+          transform: translate(calc(100vw + 100px), -100px) rotate(360deg)
+            scale(0.8);
+        }
+      }
+
+      @keyframes flyZigzag {
+        0% {
+          transform: translateX(-100px) translateY(0px) rotate(0deg);
+        }
+        25% {
+          transform: translateX(25vw) translateY(-100px) rotate(90deg);
+        }
+        50% {
+          transform: translateX(50vw) translateY(100px) rotate(180deg);
+        }
+        75% {
+          transform: translateX(75vw) translateY(-50px) rotate(270deg);
+        }
+        100% {
+          transform: translateX(calc(100vw + 100px)) translateY(0px)
+            rotate(360deg);
+        }
+      }
+
+      .maximum-mode-active {
+        animation: maximumPulse 0.3s infinite alternate;
+      }
+
+      @keyframes maximumPulse {
+        0% {
+          border: 2px inset #c0c0c0;
+        }
+        100% {
+          border: 2px outset #c0c0c0;
+        }
+      }
+
+      @keyframes dance {
+        0%,
+        100% {
+          transform: rotate(0deg) scale(1);
+        }
+        25% {
+          transform: rotate(-2deg) scale(1.05);
+        }
+        50% {
+          transform: rotate(2deg) scale(0.95);
+        }
+        75% {
+          transform: rotate(-1deg) scale(1.02);
+        }
+      }
+
+      .maximum-button {
+        background: #008080 !important;
+        color: #ffffff !important;
+        border: 2px outset #008080 !important;
+        font-weight: bold !important;
+      }
+
+      .maximum-button:hover {
+        background: #20a0a0 !important;
+      }
+
+      .maximum-button:active {
+        border: 2px inset #008080 !important;
+        background: #006060 !important;
+      }
+
+      .bluescreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #0000aa;
+        color: #ffffff;
+        font-family: "Courier New", monospace;
+        font-size: 16px;
+        z-index: 9999;
+        padding: 40px;
+        line-height: 1.4;
+        display: none;
+        overflow: auto;
+      }
+
+      .bluescreen-overlay {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.2;
+        z-index: 10000;
+        pointer-events: none;
+        max-width: 80vw;
+        max-height: 80vh;
+      }
+
+      @keyframes blink {
+        0%,
+        50% {
+          opacity: 1;
+        }
+        51%,
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bluescreen" id="bluescreen"></div>
+
+    <div class="app-container">
+      <div class="main-content">
+        <h1>
+          <img
+            src="icons/bobr.ico"
+            width="30"
+            height="30"
+            style="vertical-align: middle; margin-right: 6px"
+          />
+          bober.pics
+          <img
+            src="icons/bobr.ico"
+            width="30"
+            height="30"
+            style="vertical-align: middle; margin-right: 6px"
+          />
+        </h1>
+        <img
+          id="boberImage"
+          src=""
+          alt="Beautiful Bober"
+          onclick="randomBober()"
+        />
+      </div>
+
+      <div class="sidebar">
+        <div class="fun-stats">
+          <div>
+            <img
+              src="icons/bobr.ico"
+              width="20"
+              height="20"
+              style="vertical-align: middle; margin-right: 6px"
+            />Bobers Viewed: <span id="boberCount">0</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <h3>Bober Controls</h3>
+          <button onclick="randomBober()">
+            <img src="icons/refresh.ico" />Random Bober
+          </button>
+          <button onclick="downloadBober()">
+            <img src="icons/save.ico" />Save Bober
+          </button>
+          <button onclick="boberDance()">
+            <img src="icons/dance.ico" />Bober Dance
+          </button>
+          <button class="maximum-button" onclick="maximumBoberMode()">
+            <img src="icons/max.ico" />MAXIMUM BOBER MODE
+          </button>
+        </div>
+
+        <div class="control-group">
+          <h3>Color Profiles</h3>
+          <button onclick="applyFilter('none')">
+            <img src="icons/restore.ico" />Original
+          </button>
+          <button onclick="applyFilter('grayscale')">
+            <img src="icons/baw.ico" />Grayscale
+          </button>
+          <button onclick="applyFilter('sepia')">
+            <img src="icons/sepia.ico" />Sepia
+          </button>
+          <button onclick="applyFilter('invert')">
+            <img src="icons/invert.ico" />Invert
+          </button>
+          <button onclick="applyFilter('vintage')">
+            <img src="icons/paint.ico" />Retro
+          </button>
+          <button onclick="applyFilter('cyberpunk')">
+            <img src="icons/neon.ico" />Neon
+          </button>
+        </div>
+
+        <div class="control-group">
+          <h3>Image Effects</h3>
+          <div class="slider-group">
+            <label>Brightness: <span id="brightnessValue">100</span>%</label>
+            <input
+              type="range"
+              id="brightness"
+              min="0"
+              max="200"
+              value="100"
+              oninput="updateFilters()"
+            />
+          </div>
+          <div class="slider-group">
+            <label>Contrast: <span id="contrastValue">100</span>%</label>
+            <input
+              type="range"
+              id="contrast"
+              min="0"
+              max="200"
+              value="100"
+              oninput="updateFilters()"
+            />
+          </div>
+          <div class="slider-group">
+            <label>Saturation: <span id="saturationValue">100</span>%</label>
+            <input
+              type="range"
+              id="saturation"
+              min="0"
+              max="200"
+              value="100"
+              oninput="updateFilters()"
+            />
+          </div>
+          <div class="slider-group">
+            <label>Hue: <span id="hueValue">0</span>°</label>
+            <input
+              type="range"
+              id="hue"
+              min="0"
+              max="360"
+              value="0"
+              oninput="updateFilters()"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const bobrs = [
+        "0247a73090.jpeg",
+        "09dba5880d.jpeg",
+        "20a349d40e.jpeg",
+        "2587377147.jpeg",
+        "28e6720d27.jpeg",
+        "2a0459f3e8.jpeg",
+        "34164b485e.jpeg",
+        "3c55652a27.jpeg",
+        "3f2f27aa61.jpeg",
+        "401492762e.jpeg",
+        "46c53c010a.jpeg",
+        "4a3b5b5e66.jpeg",
+        "4a98505cb7.jpeg",
+        "4c7a35e6f0.jpeg",
+        "4dfefe3686.jpeg",
+        "518bd74a72.jpeg",
+        "52ccd05e66.jpeg",
+        "53c9cd2af4.jpeg",
+        "5a9c0722ce.jpeg",
+        "5c49fbe1f9.jpeg",
+        "62a1ce6113.jpeg",
+        "640ff6bad9.jpeg",
+        "6912a084b8.jpeg",
+        "6ccc31710f.jpeg",
+        "6d6f35e9f1.jpeg",
+        "6f166e2f4f.jpeg",
+        "6f3589aaf0.jpeg",
+        "71de85aee2.jpeg",
+        "72fa8a6406.jpeg",
+        "7bc0392d4e.jpeg",
+        "7d4c4b7173.jpeg",
+        "7fcaf1ff93.jpeg",
+        "8200766963.jpeg",
+        "82c8968513.jpeg",
+        "8b7d52fb81.jpeg",
+        "913fde06c7.jpeg",
+        "925315fa06.jpeg",
+        "944cf3adab.jpeg",
+        "95cef0ecc8.jpeg",
+        "a91005fd91.jpeg",
+        "b497426088.jpeg",
+        "b7850d5e2c.jpeg",
+        "ba9abbfa52.jpeg",
+        "bccde20178.jpeg",
+        "c46dc4f702.jpeg",
+        "c501c15ec8.jpeg",
+        "caf62f13e3.jpeg",
+        "cbd6566f9b.jpeg",
+        "cdb21c6804.jpeg",
+        "d15322cfc9.jpeg",
+        "d61b4ce66b.jpeg",
+        "d6dcdd100a.jpeg",
+        "db0732653a.jpeg",
+        "dbb79aa949.jpeg",
+        "e4fb91a1a6.jpeg",
+        "eada6f1401.jpeg",
+        "edc8d61301.jpeg",
+        "ef82c0f26b.jpeg",
+        "f1be755668.jpeg",
+        "f9bf1f66bf.jpeg",
+      ];
+
+      let currentBober = 0;
+      let boberCount = parseInt(localStorage.getItem("boberCount")) || 0;
+      let isMaximumMode = false;
+      let maximumInterval;
+      let maximumModeTimer;
+
+      function randomBober() {
+        currentBober = Math.floor(Math.random() * bobrs.length);
+        document.getElementById(
+          "boberImage"
+        ).src = `pics/${bobrs[currentBober]}`;
+        boberCount++;
+        localStorage.setItem("boberCount", boberCount.toString());
+        document.getElementById("boberCount").textContent = boberCount;
+        createEasterEgg("bober");
+
+        if (boberCount === 50) {
+          alert("Congratulations! You are a true Bober Master!");
+        }
+      }
+
+      function applyFilter(filterType) {
+        const img = document.getElementById("boberImage");
+        let filter = "";
+
+        switch (filterType) {
+          case "grayscale":
+            filter = "grayscale(100%)";
+            break;
+          case "sepia":
+            filter = "sepia(100%)";
+            break;
+          case "invert":
+            filter = "invert(100%)";
+            break;
+          case "vintage":
+            filter = "sepia(50%) contrast(120%) brightness(110%)";
+            break;
+          case "cyberpunk":
+            filter = "hue-rotate(180deg) saturate(200%) contrast(150%)";
+            break;
+          default:
+            filter = "none";
+        }
+
+        img.style.filter = filter;
+        updateFilters();
+      }
+
+      function updateFilters() {
+        const img = document.getElementById("boberImage");
+        const brightness = document.getElementById("brightness").value;
+        const contrast = document.getElementById("contrast").value;
+        const saturation = document.getElementById("saturation").value;
+        const hue = document.getElementById("hue").value;
+
+        document.getElementById("brightnessValue").textContent = brightness;
+        document.getElementById("contrastValue").textContent = contrast;
+        document.getElementById("saturationValue").textContent = saturation;
+        document.getElementById("hueValue").textContent = hue;
+
+        const currentFilter = img.style.filter || "";
+        const baseFilter = currentFilter.split("brightness")[0];
+
+        img.style.filter = `${baseFilter} brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) hue-rotate(${hue}deg)`;
+      }
+
+      function boberDance() {
+        const img = document.getElementById("boberImage");
+        img.style.animation = "none";
+        setTimeout(() => {
+          img.style.animation = "dance 1s ease-in-out";
+        }, 10);
+        createEasterEgg("dance");
+      }
+
+      function maximumBoberMode() {
+        isMaximumMode = !isMaximumMode;
+        const mainImage = document.getElementById("boberImage");
+
+        if (isMaximumMode) {
+          mainImage.classList.add("maximum-mode-active");
+
+          maximumInterval = setInterval(() => {
+            createFlyingBober();
+            createFlyingBober();
+            createFlyingBober();
+          }, 100);
+
+          const randomMinutes = 1 + Math.random() * 9;
+          maximumModeTimer = setTimeout(() => {
+            if (isMaximumMode) {
+              showBluescreen();
+            }
+          }, randomMinutes * 60 * 1000);
+
+          createEasterEgg("max");
+        } else {
+          mainImage.classList.remove("maximum-mode-active");
+          clearInterval(maximumInterval);
+          clearTimeout(maximumModeTimer);
+
+          const flyingBobers = document.querySelectorAll(".flying-bober");
+          flyingBobers.forEach((bober) => bober.remove());
+        }
+      }
+
+      function createFlyingBober() {
+        const flyingBober = document.createElement("img");
+        flyingBober.className = "flying-bober";
+        flyingBober.src = `pics/${
+          bobrs[Math.floor(Math.random() * bobrs.length)]
+        }`;
+
+        const animations = ["fly", "flyDiagonal", "flyZigzag"];
+        const animation =
+          animations[Math.floor(Math.random() * animations.length)];
+        const duration = 1 + Math.random() * 3;
+        const hue = Math.random() * 360;
+        const scale = 0.3 + Math.random() * 1.5;
+        const size = 40 + Math.random() * 100;
+
+        flyingBober.style.width = size + "px";
+        flyingBober.style.height = size * 0.75 + "px";
+        flyingBober.style.top = Math.random() * window.innerHeight + "px";
+        flyingBober.style.left = "-150px";
+        flyingBober.style.filter = `hue-rotate(${hue}deg) saturate(${
+          100 + Math.random() * 200
+        }%) brightness(${80 + Math.random() * 140}%)`;
+        flyingBober.style.transform = `scale(${scale})`;
+        flyingBober.style.animation = `${animation} ${duration}s linear`;
+
+        document.body.appendChild(flyingBober);
+
+        setTimeout(() => {
+          if (flyingBober.parentNode) {
+            flyingBober.remove();
+          }
+        }, duration * 1000 + 200);
+      }
+
+      function downloadBober() {
+        const img = document.getElementById("boberImage");
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const rect = img.getBoundingClientRect();
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+
+        const tempImg = new Image();
+        tempImg.crossOrigin = "anonymous";
+
+        tempImg.onload = function () {
+          const brightness = document.getElementById("brightness").value;
+          const contrast = document.getElementById("contrast").value;
+          const saturation = document.getElementById("saturation").value;
+          const hue = document.getElementById("hue").value;
+
+          const currentStyle = img.style.filter || "";
+          const baseFilter = currentStyle.split("brightness")[0].trim();
+
+          const combinedFilter =
+            `${baseFilter} brightness(${brightness}%) contrast(${contrast}%) saturate(${saturation}%) hue-rotate(${hue}deg)`.trim();
+
+          ctx.filter = combinedFilter;
+
+          ctx.drawImage(tempImg, 0, 0);
+
+          canvas.toBlob((blob) => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `bober_edited_${Date.now()}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+          }, "image/png");
+        };
+
+        tempImg.onerror = function () {
+          const tempCanvas = document.createElement("canvas");
+          const tempCtx = tempCanvas.getContext("2d");
+
+          tempCanvas.width = img.naturalWidth;
+          tempCanvas.height = img.naturalHeight;
+
+          const imageElement = img.cloneNode();
+          imageElement.onload = function () {
+            tempCtx.drawImage(imageElement, 0, 0);
+
+            tempCanvas.toBlob((blob) => {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = `bober_edited_${Date.now()}.png`;
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+              URL.revokeObjectURL(url);
+            }, "image/png");
+          };
+          imageElement.src = img.src;
+        };
+
+        tempImg.src = img.src;
+        createEasterEgg("save");
+      }
+
+      function createEasterEgg(iconType) {
+        const egg = document.createElement("div");
+        egg.className = "easter-egg";
+
+        const iconMap = {
+          bober: "bobr.ico",
+          dance: "dance.ico",
+          max: "max.ico",
+          save: "save.ico",
+          error: "config.ico",
+        };
+
+        const iconFile = iconMap[iconType] || "bobr.ico";
+        egg.innerHTML = `<img src="icons/${iconFile}" width="20" height="20" style="image-rendering: pixelated;">`;
+
+        egg.style.left = Math.random() * window.innerWidth + "px";
+        egg.style.top = Math.random() * window.innerHeight + "px";
+        document.body.appendChild(egg);
+
+        setTimeout(() => {
+          if (egg.parentNode) {
+            document.body.removeChild(egg);
+          }
+        }, 3000);
+      }
+
+      function randomBluescreen() {
+        if (Math.random() < 0.01) {
+          showBluescreen();
+          return true;
+        }
+        return false;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach((button) => {
+          button.addEventListener(
+            "click",
+            function (e) {
+              if (randomBluescreen()) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            },
+            true
+          );
+        });
+      });
+
+      function showBluescreen() {
+        const bluescreen = document.getElementById("bluescreen");
+
+        const errorCodes = [
+          "0E",
+          "1E",
+          "2E",
+          "3E",
+          "4E",
+          "5E",
+          "6E",
+          "7E",
+          "8E",
+          "9E",
+          "AE",
+          "BE",
+          "CE",
+          "DE",
+          "FE",
+        ];
+        const memoryAddresses = [
+          "C0011E36",
+          "C0021F47",
+          "C0031A58",
+          "C0041B69",
+          "C0051C7A",
+          "C0061D8B",
+          "C0071E9C",
+        ];
+        const vxdCodes = [
+          "00010E36",
+          "00011F47",
+          "00012A58",
+          "00013B69",
+          "00014C7A",
+          "00015D8B",
+          "00016E9C",
+        ];
+
+        const randomError =
+          errorCodes[Math.floor(Math.random() * errorCodes.length)];
+        const randomMemory =
+          memoryAddresses[Math.floor(Math.random() * memoryAddresses.length)];
+        const randomVxd = vxdCodes[Math.floor(Math.random() * vxdCodes.length)];
+
+        bluescreen.innerHTML = `
+          <h2>A fatal exception ${randomError} has occurred at 0028:${randomMemory} in VXD VMM(01) +</h2>
+          <h2>${randomVxd}. The current application will be terminated.</h2>
+          <br />
+          <div class="error-text">
+            * Press any key to terminate the current application.<br />
+            * Press CTRL+ALT+DEL again to restart your computer. You will<br />
+            &nbsp;&nbsp;lose any unsaved information in all applications.<br />
+            <br />
+            Error: BOBER_OVERLOAD_EXCEPTION<br />
+            <br />
+            The system has detected an excessive amount of bober cuteness.<br />
+            This may be caused by:<br />
+            <br />
+            * Too many simultaneous bober images<br />
+            * Maximum bober mode enabled for extended period<br />
+            * Bober.exe has encountered an unexpected dam overflow<br />
+            <br />
+            <span class="blink">Press any key to continue _</span>
+          </div>
+          <img src="pics/alivent.jpeg" class="bluescreen-overlay" />
+        `;
+
+        bluescreen.style.display = "block";
+        createEasterEgg("error");
+
+        const hideBluescreen = () => {
+          bluescreen.style.display = "none";
+          document.removeEventListener("keydown", hideBluescreen);
+          window.location.reload();
+        };
+
+        document.addEventListener("keydown", hideBluescreen);
+      }
+
+      randomBober();
+
+      document.getElementById("boberCount").textContent = boberCount;
+
+      window.addEventListener("beforeunload", () => {
+        if (maximumInterval) {
+          clearInterval(maximumInterval);
+        }
+        if (maximumModeTimer) {
+          clearTimeout(maximumModeTimer);
+        }
+      });
+    </script>
+  </body>
+</html>
