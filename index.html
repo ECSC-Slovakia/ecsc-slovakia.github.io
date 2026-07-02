@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<!--
+  ███ SLOVAK CYBER TEAM ███
+  Zdravíme zvedavých. Presne takých hľadáme. / Greetings, curious one.
+  Skús konzolu... alebo ↑↑↓↓←→←→BA
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slovak Cyber Team — Slovenská reprezentácia v kybernetickej bezpečnosti</title>
+<meta name="description" content="Slovak Cyber Team — národný tím Slovenska na European Cybersecurity Challenge (ECSC). TOP 4 v Európe 2025. Hackujeme pre Slovensko.">
+<meta property="og:title" content="Slovak Cyber Team">
+<meta property="og:description" content="Slovenská reprezentácia v kybernetickej bezpečnosti. 4. miesto v Európe na ECSC 2025.">
+<meta property="og:image" content="https://cyberteam.sk/assets/img/sk_tim_2025.jpeg">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="#" aria-label="Slovak Cyber Team — domov" data-i18n-aria="aria.brand">
+      <b>SLOVAK</b><span>CYBER TEAM</span>
+    </a>
+    <nav class="site-nav" aria-label="Hlavná navigácia" data-i18n-aria="aria.mainnav">
+      <a href="#tim" data-i18n="nav.team">Tím</a>
+      <a href="#uspechy" data-i18n="nav.achievements">Úspechy</a>
+      <a href="#ecsc" data-i18n="nav.ecsc">O ECSC</a>
+      <a href="#historia" data-i18n="nav.history">História</a>
+      <a href="#galeria" data-i18n="nav.gallery">Galéria</a>
+      <a href="#partneri" data-i18n="nav.partners">Partneri</a>
+      <a href="#pridaj-sa" data-i18n="nav.join">Pridaj sa</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Jazyk / Language">
+      <button type="button" data-lang="sk" aria-pressed="true">SK</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="nav-burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <img class="hero__circuit" src="assets/circuit.svg" alt="" aria-hidden="true">
+    <div class="container hero__inner">
+      <div>
+        <h1 class="hero__wordmark"><span class="w">SLOVAK</span><span class="r">CYBER&nbsp;TEAM</span></h1>
+        <p class="hero__tagline" data-i18n="hero.tagline">Slovenská reprezentácia v&nbsp;kybernetickej bezpečnosti. Hackujeme, súťažíme a&nbsp;vyhrávame pre Slovensko na European Cybersecurity Challenge.</p>
+        <p class="hero__term" aria-hidden="true"><span class="term-text"></span><span class="caret"></span></p>
+        <div class="hero__cta">
+          <a class="btn btn--red" href="#pridaj-sa" data-i18n="hero.cta1">Chcem do tímu</a>
+          <a class="btn btn--ghost" href="#tim" data-i18n="hero.cta2">Spoznaj tím</a>
+        </div>
+      </div>
+      <figure class="hero__photo">
+        <img src="assets/img/sk_tim_2025.jpeg" alt="Slovak Cyber Team so slovenskou vlajkou na ECSC 2025 vo Varšave" data-i18n-alt="alt.heroPhoto" width="768" height="1024">
+        <figcaption data-i18n="hero.caption">ECSC 2025 · Varšava 🇵🇱</figcaption>
+      </figure>
+    </div>
+    <div class="hero-stats">
+      <div class="container hero-stats__inner">
+        <div class="stat"><b><span class="accent">#</span>4</b><span data-i18n="stat.1">v Európe 2025</span></div>
+        <div class="stat"><b>40</b><span data-i18n="stat.2">krajín vo finále</span></div>
+        <div class="stat"><b>10</b><span data-i18n="stat.3">hackerov v tíme</span></div>
+        <div class="stat"><b>4<span class="accent">×</span></b><span data-i18n="stat.4">účasť na finále ECSC</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RESULT 2025 ============ -->
+  <section class="section" id="vysledok">
+    <div class="container">
+      <div class="result-card reveal">
+        <div class="result-card__img">
+          <img src="assets/img/vysledok_2025.webp" alt="Výsledková tabuľa ECSC 2025 — Slovensko na 4. mieste" data-i18n-alt="alt.result" loading="lazy">
+        </div>
+        <div class="result-card__body">
+          <p class="kicker">ECSC 2025 · <span data-i18n="result.kicker">Varšava, Poľsko</span></p>
+          <h2 data-i18n="result.title">4. miesto zo 40 krajín — najlepší výsledok v histórii</h2>
+          <p data-i18n="result.text">Na európskom finále vo Varšave zdolával náš tím dva dni CTF zadania z kryptografie, binárnej exploitácie, reverzného inžinierstva a forenznej analýzy. Počas Attack&amp;Defense dňa sme boli dokonca na prvom mieste pred zamrznutím výsledkovej tabule.</p>
+          <a class="btn btn--blue" href="ecsc-2025.html" data-i18n="result.cta">Celý príbeh ECSC 2025 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="section section--paper" id="tim">
+    <div class="container">
+      <p class="kicker">// <span data-i18n="team.kicker">náš tím</span></p>
+      <h2 class="section-title" data-i18n="team.title">Ľudia za klávesnicami</h2>
+      <p class="section-lead" data-i18n="team.lead">Desať hráčov vo veku 16 – 22 rokov, vybraných z národnej súťaže CyberGame. Klikni na kartu a zisti, kto sme.</p>
+
+      <div class="team-grid">
+        <article class="member member--captain reveal">
+          <div class="member__photo"><img src="assets/img/geleta1.png" alt="Marek Geleta" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Marek Geleta</h3>
+            <p class="member__role" data-i18n="role.captain">Kapitán</p>
+            <p class="member__affil">MUNI Brno · <span data-i18n="affil.cyber">Kyberbezpečnosť</span></p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.geleta"><p>Je pre mňa zábava rozumieť, ako veci fungujú. Napríklad z hľadiska ofenzívnej bezpečnosti chcem rozumieť, ako program funguje — baví ma stavať ho, vymyslieť, ale takisto ma baví ho rozobrať a rozbúrať a potom ho postaviť lepšie. A samozrejme, baví ma svet robiť lepším miestom, aj keď je to asi taká obyčajná odpoveď. Ale je pre mňa dôležité vedieť, že robím niečo, čo môže niekomu pomôcť.</p></div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/andras1.png" alt="Vladimír Andráš" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Vladimír Andráš</h3>
+            <p class="member__role" data-i18n="role.competitor">Súťažiaci</p>
+            <p class="member__affil">FMFI UK · <span data-i18n="affil.bioinf">Bioinformatika</span></p>
+          </div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/bohuslavskyi1.png" alt="Nikita Bohuslavskyi" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Nikita Bohuslavskyi</h3>
+            <p class="member__role" data-i18n="role.competitor">Súťažiaci</p>
+            <p class="member__affil">FEI TUKE · Siemens Healthineers</p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.bohuslavskyi"><p>Kybernetická bezpečnosť je oblasť, ktorá si vyžaduje široký rozhľad aj hlbokú technickú odbornosť. Najviac ma na nej fascinuje jej dynamická povaha – hrozby, postupy a technológie sa neustále vyvíjajú a to, čo bolo bezpečné včera, už dnes bezpečné byť nemusí. Rád posilňujem bezpečnosť skúmaním nových zraniteľností, sledovaním vyvíjajúcich sa trendov a snahou zostať o krok vpred pred útočníkmi. Súťaže Capture The Flag (CTF) patria medzi najlepšie spôsoby, ako si v tejto oblasti brúsiť analytické myslenie, riešenie problémov a tímovú spoluprácu.</p></div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/hadar1.png" alt="Adam Hadar" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Adam Hadar</h3>
+            <p class="member__role" data-i18n="role.competitor">Súťažiaci</p>
+            <p class="member__affil">FI MUNI Brno</p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.hadar"><p>Kybernetická bezpečnosť je pre mňa jedným z odvetví technológií a programovania, ktoré sa najrýchlejšie vyvíja. Núti ma to učiť sa čo najviac nových vecí. Rád vidím, ako sa rozvíja celé odvetvie bezpečnosti a som rád, keď to vidím aj na sebe. Študujem programovací odbor informatiky.</p></div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/kolencik1.png" alt="Dušan Kolenčík" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Dušan Kolenčík</h3>
+            <p class="member__role" data-i18n="role.competitor">Súťažiaci</p>
+            <p class="member__affil">UNIZA FRI</p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.kolencik"><p>Kyberbezpečnosť ma baví, lebo je to kategória technického sveta, ktorá sa musí neustále posúvať a dorovnávať sa so všetkými novinkami v rôznorodých odvetviach informačných technológií. Ak by sa tento posun nerealizoval a neodhaľovali sa nové zraniteľnosti a taktiež ich „patche“, svet a hlavne ten internetový by bol veľmi ohrozeným miestom, priam nevyužiteľným. Vždy sa rád priučím novým veciam, či už cez rôzne blogy, alebo ešte lepšie rozhovorom s niekým, kto danej téme rozumie do hĺbky.</p></div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/lepies1.png" alt="Ivan Lepieš" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Ivan Lepieš</h3>
+            <p class="member__role" data-i18n="role.competitor">Súťažiaci</p>
+            <p class="member__affil">FI MUNI · IstroSec</p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.lepies"><p>Na kybernetickej bezpečnosti ma najviac baví to, že sa neustále učím niečo nové a postupne sa dostávam vedomosťami aj na úroveň sofistikovaných útočníkov. Tým pádom dokážem lepšie myslieť a predpovedať ďalšie fázy útoku. Taktiež to má za následok, že dokážem lepšie zabezpečiť sieť voči takýmto útokom. Zaujíma ma ofenzívna bezpečnosť a chcem sa dostať na úroveň tých najlepších stratégov v tejto oblasti a využiť to na ochranu.</p></div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/lichvar1.png" alt="Oliver Lichvár" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Oliver Lichvár</h3>
+            <p class="member__role" data-i18n="role.competitor">Súťažiaci</p>
+            <p class="member__affil">VUT FEKT · Axenta</p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.lichvar"><p>Na kybernetickej bezpečnosti ma baví hlavne jej verzatilita — je veľmi široká a má veľmi veľa aspektov. Niekoho baví webová časť, niekoho infraštruktúra a každý si nájde vlastnú oblasť. Mňa konkrétne baví infraštruktúra a niečo na nižších vrstvách, čo nevidí veľa ľudí. Táto „diagnóza“ sa začala už okolo druhého ročníka na strednej škole.</p></div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/mandzak1.png" alt="Matúš Mandzák" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Matúš Mandzák</h3>
+            <p class="member__role" data-i18n="role.competitor">Súťažiaci</p>
+            <p class="member__affil">TUKE · <span data-i18n="affil.cyber2">Kyberbezpečnosť</span></p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.mandzak"><p>Kyberbezpečnosť ma fascinuje svojou dynamikou a nutnosťou neustále sa vzdelávať. Každý deň prináša nové výzvy a vyžaduje od človeka, aby sa neustále vzdelával, čo robí tento odbor zaujímavým a zábavným. Najväčšie čaro má však práca v tíme. Nikto nemôže byť odborníkom na všetko a práve preto je dôležité spolupracovať a navzájom sa dopĺňať.</p></div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/subjakova1.png" alt="Kristína Šubjaková" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Kristína Šubjaková</h3>
+            <p class="member__role" data-i18n="role.competitor-f">Súťažiaca</p>
+            <p class="member__affil">SOŠE Liptovský Mikuláš</p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.subjakova"><p>Moja cesta ku kyberbezpečnosti začala počas štúdia na strednej škole, kde som sa venovala organizovaniu workshopov pre základné a stredné školy o bezpečnosti na internete ako ambasádorka projektu Security Girl. Záujem o túto oblasť sa postupne prehlboval, no k CTF súťažiam som sa dostala až neskôr. Moje prvé väčšie CTFko bolo CyberGame, kde som si uvedomila, že táto oblasť ma veľmi baví a chcem sa jej viac venovať.</p><p>Predtým som sa venovala predovšetkým tvorbe webstránok a počítačovým sieťam, čo mi pomohlo získať solídne základy v IT, ktoré teraz využívam v kyberbezpečnosti. V CTF súťažiach ma najviac zaujíma Web Security a OSINT, no ešte sa snažím získať prehľad a zručnosti naprieč rôznymi oblasťami IT.</p><p>Okrem kyberbezpečnosti sa vo voľnom čase venujem počítačovým hrám a šachu. Šachu som sa venovala súťažne od svojich piatich rokov, stala som sa trojnásobnou majsterkou Slovenska a umiestnila som sa aj na 3. mieste na Majstrovstvách Európskej únie v rapid šachu.</p></div>
+        </article>
+
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/varga1.png" alt="Samuel Varga" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Samuel Varga</h3>
+            <p class="member__role" data-i18n="role.competitor">Súťažiaci</p>
+            <p class="member__affil">Gymnázium J. Hollého · Fortinet</p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.varga"><p>Fascinuje ma dynamika medzi útočníkom a obrancom – je to ako neustála operácia v kybernetickom priestore. Jedna strana plánuje útoky a snaží sa prekonať obranu, druhá musí rýchlo reagovať, analyzovať a brániť. Pripomína mi to strategickú hru, kde rozhoduje rýchlosť, kreativita a detailná znalosť prostredia.</p><p>Najviac ma však baví riešenie komplexných úloh do hĺbky – či už ide o analýzu škodlivého kódu, hľadanie skrytých zraniteľností alebo modelovanie celého útoku krok za krokom. Mojím dlhodobým cieľom je prepracovať sa medzi najlepších v ofenzívnej bezpečnosti a venovať sa výskumu a vývoju techník na úrovni, akú dnes dosahujú architekti národných kybernetických operácií.</p></div>
+        </article>
+      </div>
+
+      <h3 style="font-size:22px;margin:44px 0 6px" data-i18n="team.staff">Vedenie tímu</h3>
+      <div class="staff-grid">
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/huskova.jpg" alt="Alexandra Húsková" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Alexandra Húsková</h3>
+            <p class="member__role" data-i18n="role.manager">Manažérka tímu</p>
+            <p class="member__affil"><a href="https://sk.linkedin.com/in/alexandra-huskova" target="_blank" rel="noopener">LinkedIn ↗</a></p>
+          </div>
+        </article>
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/hettych.jpg" alt="Tomáš Hettych" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Tomáš Hettych</h3>
+            <p class="member__role" data-i18n="role.producer">Producent tímu</p>
+            <p class="member__affil"><a href="https://sk.linkedin.com/in/hettych" target="_blank" rel="noopener">LinkedIn ↗</a></p>
+          </div>
+        </article>
+        <article class="member reveal">
+          <div class="member__photo"><img src="assets/img/gajdosik1.png" alt="Adam Gajdošík" loading="lazy"></div>
+          <div class="member__body">
+            <h3 class="member__name">Adam Gajdošík</h3>
+            <p class="member__role" data-i18n="role.coach">Technický kouč</p>
+            <p class="member__affil">NCKB · NBÚ</p>
+          </div>
+          <div class="member__bio" hidden data-i18n="bio.gajdosik"><p>Na kybernetickej bezpečnosti ma baví to, že vyžaduje od človeka hlboké porozumenie samotnej informatiky a aj konkrétnej oblasti, ktorej sa venuje. Aj informatika ma začala baviť poriadne, až keď som pochopil, ako veci reálne fungujú a nebol som už iba bežný používateľ technológie. A to vlastne viedlo k tomu, že som sa začal zaujímať aj o bezpečnosť. Kybernetická bezpečnosť je v podstate „len“ bezpečnosť informačných technológií — vecí, ktoré ľudia denne používajú: telefónov, televízorov a počítačov.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="section" id="uspechy">
+    <div class="container">
+      <p class="kicker">// <span data-i18n="ach.kicker">úspechy</span></p>
+      <h2 class="section-title" data-i18n="ach.title">Čo sa nám podarilo</h2>
+      <p class="section-lead" data-i18n="ach.lead">Sezóna 2025 bola naša najlepšia. A ešte len začíname.</p>
+      <ul class="timeline">
+        <li class="reveal">
+          <time data-i18n="ach.1.date">Október 2025</time>
+          <p data-i18n="ach.1.text"><b>4. miesto na ECSC vo Varšave</b> spomedzi 40 krajín — historicky najlepší výsledok Slovenska. Počas Attack&amp;Defense dňa sme pred zamrznutím tabule viedli celé poradie.</p>
+        </li>
+        <li class="reveal">
+          <time data-i18n="ach.2.date">September 2025</time>
+          <p data-i18n="ach.2.text"><b>Kvalifikácia na DefCamp CTF</b> — onsite finále v Hacking Village na konferencii DefCamp v Bukurešti.</p>
+        </li>
+        <li class="reveal">
+          <time data-i18n="ach.3.date">Marec 2025</time>
+          <p data-i18n="ach.3.text"><b>1. miesto na Zero Days CTF v Dubline</b> — štyria členovia tímu ovládli írsku súťaž.</p>
+        </li>
+        <li class="reveal">
+          <time data-i18n="ach.4.date">Február 2025</time>
+          <p data-i18n="ach.4.text"><b>2. miesto vo finále súťaže Guardians</b> — štyria členovia tímu vo finálovom kole.</p>
+        </li>
+        <li class="reveal">
+          <time data-i18n="ach.5.date">Celý rok 2025</time>
+          <p data-i18n="ach.5.text"><b>Tréningové bootcampy</b> — výber z 20 účastníkov CyberGame, medzinárodný bootcamp vo Viedni a šesť víkendových sústredení v kaštieli v Brunovciach.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ECSC ============ -->
+  <section class="section section--dark" id="ecsc">
+    <div class="container">
+      <p class="kicker">// <span data-i18n="ecsc.kicker">o súťaži</span></p>
+      <h2 class="section-title" data-i18n="ecsc.title">Čo je ECSC?</h2>
+      <p class="section-lead" data-i18n="ecsc.lead">European Cybersecurity Challenge sú neoficiálne majstrovstvá Európy v hackovaní. Organizuje ich agentúra EÚ pre kybernetickú bezpečnosť ENISA a každý rok spájajú najlepšie mladé kyber talenty kontinentu.</p>
+      <div class="info-grid">
+        <div class="info-card reveal">
+          <span class="info-card__num">01</span>
+          <h3 data-i18n="ecsc.c1.title">Súťaž národov</h3>
+          <p data-i18n="ecsc.c1.text">Tímy z ~40 európskych krajín riešia CTF úlohy: webová a sieťová bezpečnosť, kryptografia, reverzné inžinierstvo, binárna exploitácia, forenzná analýza aj hardvér.</p>
+        </div>
+        <div class="info-card reveal">
+          <span class="info-card__num">02</span>
+          <h3 data-i18n="ecsc.c2.title">Cesta cez CyberGame</h3>
+          <p data-i18n="ecsc.c2.text">Slovenský tím sa skladá z najlepších hráčov národnej súťaže CyberGame, ktorú zastrešuje SK-CERT. Oficiálnym národným kontaktným bodom je Kompetenčné a certifikačné centrum kybernetickej bezpečnosti.</p>
+        </div>
+        <div class="info-card reveal">
+          <span class="info-card__num">03</span>
+          <h3 data-i18n="ecsc.c3.title">Príprava ako šport</h3>
+          <p data-i18n="ecsc.c3.text">Bootcampy vo Viedni a v Brunovciach, online CTF súťaže po celý rok a mentoring od profesionálov z praxe. Reprezentácia je tímový šport.</p>
+        </div>
+      </div>
+      <div class="hero__cta" style="margin-top:36px">
+        <a class="btn btn--red" href="https://cybergame.sk-cert.sk/" target="_blank" rel="noopener" data-i18n="ecsc.cta1">Zahraj si CyberGame ↗</a>
+        <a class="btn btn--ghost" href="https://ecsc.eu/" target="_blank" rel="noopener">ecsc.eu ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HISTORY ============ -->
+  <section class="section section--paper" id="historia">
+    <div class="container">
+      <p class="kicker">// <span data-i18n="hist.kicker">história</span></p>
+      <h2 class="section-title" data-i18n="hist.title">Naša cesta Európou</h2>
+      <p class="section-lead" data-i18n="hist.lead">Od prvej účasti vo Viedni po štvrté miesto vo Varšave.</p>
+      <div class="years-grid">
+        <a class="year-card reveal" href="ecsc-2022.html">
+          <div class="year-card__img"><img src="assets/img/1728-4_CC-ecsc_team_07.jpg" alt="Slovak Cyber Team na ECSC 2022" loading="lazy"></div>
+          <span class="year-card__arrow">→</span>
+          <div class="year-card__body">
+            <span class="year-card__year">2022</span>
+            <span class="year-card__meta" data-i18n="hist.2022">Viedeň 🇦🇹 · prvá účasť Slovenska</span>
+          </div>
+        </a>
+        <a class="year-card reveal" href="ecsc-2023.html">
+          <div class="year-card__img"><img src="assets/img/Team-SK_ECSC2023.jpg" alt="Oficiálna zostava Team Slovakia 2023" data-i18n-alt="alt.gal8" loading="lazy"></div>
+          <span class="year-card__arrow">→</span>
+          <div class="year-card__body">
+            <span class="year-card__year">2023</span>
+            <span class="year-card__meta" data-i18n="hist.2023">Hamar 🇳🇴 · finále v Nórsku</span>
+          </div>
+        </a>
+        <a class="year-card reveal" href="ecsc-2024.html">
+          <div class="year-card__img"><img src="assets/img/team_2024.jpg" alt="Team Slovakia na ECSC 2024" loading="lazy"></div>
+          <span class="year-card__arrow">→</span>
+          <div class="year-card__body">
+            <span class="year-card__year">2024</span>
+            <span class="year-card__meta" data-i18n="hist.2024">Turín 🇮🇹 · tretia účasť</span>
+          </div>
+        </a>
+        <a class="year-card reveal" href="ecsc-2025.html">
+          <div class="year-card__img"><img src="assets/img/ecsc_2025.jpg" alt="Slovak Cyber Team 2025 z dronu so slovenskou vlajkou" loading="lazy"></div>
+          <span class="year-card__arrow">→</span>
+          <div class="year-card__body">
+            <span class="year-card__year">2025</span>
+            <span class="year-card__meta" data-i18n="hist.2025">Varšava 🇵🇱 · <b style="color:var(--red)">4. miesto!</b></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="section" id="galeria">
+    <div class="container">
+      <p class="kicker">// <span data-i18n="gal.kicker">galéria</span></p>
+      <h2 class="section-title" data-i18n="gal.title">Kyber momenty</h2>
+      <div class="gallery">
+        <a href="assets/img/ecsc_2025.jpg" class="reveal"><img src="assets/img/ecsc_2025.jpg" alt="Tím sformovaný do kruhu okolo slovenskej vlajky, záber z dronu" data-i18n-alt="alt.gal1" loading="lazy"></a>
+        <a href="assets/img/ECSC_2024_01.jpeg" class="reveal"><img src="assets/img/ECSC_2024_01.jpeg" alt="Tréningový bootcamp v kaštieli v Brunovciach — tím pri notebookoch" data-i18n-alt="alt.gal2" loading="lazy"></a>
+        <a href="assets/img/ECSC_2024_02.jpeg" class="reveal"><img src="assets/img/ECSC_2024_02.jpeg" alt="Sústredenie v historickej sále s lustrami, hráči riešia CTF úlohy" data-i18n-alt="alt.gal3" loading="lazy"></a>
+        <a href="assets/img/ECSC_2024_03.jpeg" class="reveal"><img src="assets/img/ECSC_2024_03.jpeg" alt="Spoločné selfie tímov na medzinárodnom bootcampe s českou, slovenskou a rakúskou vlajkou" data-i18n-alt="alt.gal4" loading="lazy"></a>
+        <a href="assets/img/ECSC_2024_04.jpeg" class="reveal"><img src="assets/img/ECSC_2024_04.jpeg" alt="Oficiálna zostava Team Slovakia 2024" data-i18n-alt="alt.gal5" loading="lazy"></a>
+        <a href="assets/img/ECSC_2024_05.jpeg" class="reveal"><img src="assets/img/ECSC_2024_05.jpeg" alt="Tím Slovakia so slovenskou vlajkou pred odletom do Turína" data-i18n-alt="alt.gal6" loading="lazy"></a>
+        <a href="assets/img/ECSC_2024_06.jpeg" class="reveal"><img src="assets/img/ECSC_2024_06.jpeg" alt="Tím na oranžovom traktorovom vozíku so slovenskou vlajkou" data-i18n-alt="alt.gal7" loading="lazy"></a>
+        <a href="assets/img/Team-SK_ECSC2023.jpg" class="reveal"><img src="assets/img/Team-SK_ECSC2023.jpg" alt="Oficiálna zostava Team Slovakia 2023" data-i18n-alt="alt.gal8" loading="lazy"></a>
+        <a href="assets/img/nominacia-2022-scaled.jpg" class="reveal"><img src="assets/img/nominacia-2022-scaled.jpg" alt="Nominácia prvého slovenského tímu na ECSC 2022" data-i18n-alt="alt.gal9" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARTNERS ============ -->
+  <section class="section section--paper" id="partneri">
+    <div class="container">
+      <p class="kicker">// <span data-i18n="par.kicker">partneri</span></p>
+      <h2 class="section-title" data-i18n="par.title">Stoja pri nás</h2>
+      <p class="section-lead" data-i18n="par.lead">Oficiálnym národným kontaktným bodom ECSC na Slovensku je Kompetenčné a certifikačné centrum kybernetickej bezpečnosti. Tím podporujú títo partneri:</p>
+      <div class="partners-grid">
+        <a class="partner reveal" href="https://www.nbu.gov.sk/" target="_blank" rel="noopener"><span data-i18n="par.nbu.name">Národný bezpečnostný úrad</span><small data-i18n="par.nbu">štátny partner</small></a>
+        <a class="partner reveal" href="https://istrosec.com/" target="_blank" rel="noopener">IstroSec</a>
+        <a class="partner reveal" href="https://digitalnakoalicia.sk/" target="_blank" rel="noopener">Digitálna koalícia</a>
+        <a class="partner reveal" href="https://www.fortinet.com/" target="_blank" rel="noopener">Fortinet</a>
+        <a class="partner reveal" href="https://cyllium.eu/" target="_blank" rel="noopener">Cyllium</a>
+        <a class="partner reveal" href="https://engage.isaca.org/slovakiachapter/home" target="_blank" rel="noopener">ISACA Slovensko</a>
+        <a class="partner reveal" href="https://www.ey.com/sk_sk" target="_blank" rel="noopener">EY</a>
+        <a class="partner reveal" href="https://www.gamo.sk/" target="_blank" rel="noopener">GAMO a.s.</a>
+        <a class="partner reveal" href="https://remediata.sk/" target="_blank" rel="noopener">Remediata</a>
+        <a class="partner reveal" href="https://www.signum.legal/" target="_blank" rel="noopener">Signum Legal</a>
+      </div>
+      <p style="margin-top:28px;color:var(--ink-soft);font-size:15px" data-i18n="par.note">Chcete podporiť slovenské kyber talenty? Ozvite sa nám — radi vás medzi partnermi privítame.</p>
+    </div>
+  </section>
+
+  <!-- ============ JOIN ============ -->
+  <section class="section" id="pridaj-sa">
+    <div class="container">
+      <div class="join-band reveal">
+        <img class="circuit-bg" src="assets/circuit.svg" alt="" aria-hidden="true">
+        <div style="position:relative">
+          <h2 data-i18n="join.title">Máš 15 – 25 rokov a bavia ťa CTFka?</h2>
+          <p data-i18n="join.text">Cesta do reprezentácie vedie cez národnú súťaž CyberGame. Zahraj si, dostaň sa do výberu, prejdi bootcampmi — a o rok môžeš držať slovenskú vlajku na európskom finále ty.</p>
+          <div class="steps">
+            <div class="step"><span>01</span><p data-i18n="join.s1">Zaregistruj sa do CyberGame</p></div>
+            <div class="step"><span>02</span><p data-i18n="join.s2">Prebojuj sa do výberu talentov</p></div>
+            <div class="step"><span>03</span><p data-i18n="join.s3">Reprezentuj Slovensko na ECSC</p></div>
+          </div>
+          <div class="hero__cta">
+            <a class="btn btn--red" href="https://cybergame.sk-cert.sk/" target="_blank" rel="noopener" data-i18n="join.cta1">Zahraj si CyberGame ↗</a>
+            <a class="btn btn--ghost" href="https://www.instagram.com/cybercompetence/" target="_blank" rel="noopener" data-i18n="join.cta2">Napíš nám ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div>
+        <p class="footer-brand"><b>SLOVAK</b><br><span>CYBER TEAM</span></p>
+        <p data-i18n="foot.about">Národný tím Slovenska na European Cybersecurity Challenge. Hackujeme pre Slovensko.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/cybercompetence" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.7-1.6H17V3.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4V10H8v3h2.6v8h2.9z"/></svg>
+          </a>
+          <a href="https://twitter.com/cyberCenterSK" target="_blank" rel="noopener" aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24"><path d="M17.8 3h3l-6.7 7.7L22 21h-6.2l-4.8-6.3L5.4 21h-3l7.2-8.2L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16h1.7L7.3 4.7H5.5L16.7 19z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/cybercompetence/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zm0 1.8c-3.1 0-3.5 0-4.8.1-1.1.1-1.5.2-1.9.3-.5.2-.8.4-1.1.7-.3.3-.5.6-.7 1.1-.1.4-.3.8-.3 1.9-.1 1.3-.1 1.6-.1 4.8s0 3.5.1 4.8c.1 1.1.2 1.5.3 1.9.2.5.4.8.7 1.1.3.3.6.5 1.1.7.4.1.8.3 1.9.3 1.3.1 1.6.1 4.8.1s3.5 0 4.8-.1c1.1-.1 1.5-.2 1.9-.3.5-.2.8-.4 1.1-.7.3-.3.5-.6.7-1.1.1-.4.3-.8.3-1.9.1-1.3.1-1.6.1-4.8s0-3.5-.1-4.8c-.1-1.1-.2-1.5-.3-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.5-1.1-.7-.4-.1-.8-.3-1.9-.3-1.3-.1-1.6-.1-4.8-.1zm0 3.1a4.9 4.9 0 1 1 0 9.8 4.9 4.9 0 0 1 0-9.8zm0 8.1a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4zm6.2-8.3a1.1 1.1 0 1 1-2.3 0 1.1 1.1 0 0 1 2.3 0z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 data-i18n="foot.site">Na stránke</h3>
+        <ul>
+          <li><a href="#tim" data-i18n="nav.team">Tím</a></li>
+          <li><a href="#uspechy" data-i18n="nav.achievements">Úspechy</a></li>
+          <li><a href="#historia" data-i18n="nav.history">História</a></li>
+          <li><a href="#partneri" data-i18n="nav.partners">Partneri</a></li>
+          <li><a href="#pridaj-sa" data-i18n="nav.join">Pridaj sa</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>ECSC</h3>
+        <ul>
+          <li><a href="https://ecsc.eu/" target="_blank" rel="noopener">ecsc.eu ↗</a></li>
+          <li><a href="https://www.enisa.europa.eu/" target="_blank" rel="noopener">ENISA ↗</a></li>
+          <li><a href="https://cybergame.sk-cert.sk/" target="_blank" rel="noopener">CyberGame ↗</a></li>
+          <li><a href="ecsc-2025.html">ECSC 2025</a></li>
+          <li><a href="ecsc-2024.html">ECSC 2024</a></li>
+          <li><a href="ecsc-2023.html">ECSC 2023</a></li>
+          <li><a href="ecsc-2022.html">ECSC 2022</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="eu-strip">
+      <img src="assets/img/baner.png" alt="Logá: ECCC, Financované Európskou úniou NextGenerationEU, Plán obnovy, MIRRI SR, Kompetenčné a certifikačné centrum kybernetickej bezpečnosti" loading="lazy">
+    </div>
+    <div class="site-footer__legal">
+      <span data-i18n="foot.funding">Financované Európskou úniou. Vyjadrené názory a postoje sú názormi autora(-ov) a nemusia nevyhnutne odrážať názory a stanoviská Európskej únie.</span>
+      <span data-i18n="foot.copy">© 2026 Kompetenčné a certifikačné centrum kybernetickej bezpečnosti. Všetky práva vyhradené.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Member modal -->
+<div class="modal" id="member-modal" role="dialog" aria-modal="true" aria-label="Profil člena tímu" data-i18n-aria="aria.profile">
+  <div class="modal__card">
+    <img src="" alt="">
+    <div class="modal__body">
+      <h3 class="modal-name"></h3>
+      <p class="member__role modal-role"></p>
+      <p class="member__affil modal-affil" style="margin-bottom:14px"></p>
+      <div class="modal-bio"></div>
+    </div>
+  </div>
+  <button class="modal__close" aria-label="Zavrieť" data-i18n-aria="aria.close">✕</button>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galéria" data-i18n-aria="aria.lightbox">
+  <img src="" alt="">
+  <button class="lb-close" aria-label="Zavrieť" data-i18n-aria="aria.close">✕</button>
+  <button class="lb-prev" aria-label="Predchádzajúca" data-i18n-aria="aria.prev">‹</button>
+  <button class="lb-next" aria-label="Ďalšia" data-i18n-aria="aria.next">›</button>
+</div>
+
+<script>
+window.I18N_EN = {
+  "_title": "Slovak Cyber Team — Slovakia's national cybersecurity team",
+  "nav.team": "Team",
+  "nav.achievements": "Achievements",
+  "nav.ecsc": "About ECSC",
+  "nav.history": "History",
+  "nav.gallery": "Gallery",
+  "nav.partners": "Partners",
+  "nav.join": "Join us",
+  "hero.tagline": "Slovakia's national cybersecurity team. We hack, compete and win for Slovakia at the European Cybersecurity Challenge.",
+  "hero.cta1": "I want in",
+  "hero.cta2": "Meet the team",
+  "hero.caption": "ECSC 2025 · Warsaw 🇵🇱",
+  "stat.1": "in Europe 2025",
+  "stat.2": "countries in the final",
+  "stat.3": "hackers on the team",
+  "stat.4": "ECSC finals played",
+  "result.kicker": "Warsaw, Poland",
+  "result.title": "4th place out of 40 countries — our best result ever",
+  "result.text": "At the European final in Warsaw the team spent two days tackling CTF challenges in cryptography, binary exploitation, reverse engineering and forensics. During the Attack&amp;Defense day we were even sitting in first place before the scoreboard froze.",
+  "result.cta": "The full ECSC 2025 story →",
+  "team.kicker": "our team",
+  "team.title": "The people behind the keyboards",
+  "team.lead": "Ten players aged 16–22, selected from the national CyberGame competition. Click a card to find out who we are.",
+  "team.staff": "Team leadership",
+  "role.captain": "Captain",
+  "role.competitor": "Competitor",
+  "role.competitor-f": "Competitor",
+  "role.manager": "Team Manager",
+  "role.producer": "Team Producer",
+  "role.coach": "Technical Coach",
+  "affil.cyber": "Cybersecurity",
+  "affil.cyber2": "Cybersecurity",
+  "affil.bioinf": "Bioinformatics",
+  "bio.geleta": "<p>For me, it's fun to understand how things work. In offensive security, for example, I want to understand how a program works — I enjoy building and designing it, but I equally enjoy taking it apart, breaking it down, and then building it back better. And of course, I enjoy making the world a better place, even if that's probably a rather ordinary answer. But it matters to me to know that I'm doing something that can help someone.</p>",
+  "bio.bohuslavskyi": "<p>Cybersecurity is a field that demands both a broad outlook and deep technical expertise. What fascinates me most is its dynamic nature — threats, techniques and technologies are constantly evolving, and what was secure yesterday may no longer be secure today. I enjoy strengthening security by researching new vulnerabilities, following emerging trends and striving to stay one step ahead of attackers. Capture The Flag competitions are among the best ways to sharpen your analytical thinking, problem-solving and teamwork in this field.</p>",
+  "bio.hadar": "<p>For me, cybersecurity is one of the fastest-evolving branches of technology and programming. It pushes me to learn as many new things as I can. I love watching the entire security field grow, and I'm glad when I can see that growth in myself as well. I'm studying a programming-focused computer science programme.</p>",
+  "bio.kolencik": "<p>I enjoy cybersecurity because it's the part of the technical world that constantly has to push forward and keep pace with everything new across information technology. If that progress didn't happen — if new vulnerabilities and their patches weren't being uncovered — the world, especially the online one, would be an extremely dangerous place, practically unusable. I'm always happy to learn something new, whether through blogs or, even better, by talking to someone who understands the topic in depth.</p>",
+  "bio.lepies": "<p>What I enjoy most about cybersecurity is that I'm constantly learning something new and gradually building my knowledge up to the level of sophisticated attackers. That lets me think better and anticipate the next phases of an attack — and secure a network against them far more effectively. I'm interested in offensive security, and I want to reach the level of the very best strategists in this field and use it for protection.</p>",
+  "bio.lichvar": "<p>What I enjoy most about cybersecurity is its versatility — it's incredibly broad and has many facets. Some people love the web side, others infrastructure, and everyone finds their own niche. For me it's infrastructure and the lower layers — the parts most people never see. This \"diagnosis\" set in around my second year of secondary school.</p>",
+  "bio.mandzak": "<p>Cybersecurity fascinates me with its dynamics and the constant need to keep learning. Every day brings new challenges, which makes this field both interesting and fun. The greatest magic, though, lies in teamwork. No one can be an expert at everything, and that's exactly why it's so important to work together and complement one another.</p>",
+  "bio.subjakova": "<p>My journey into cybersecurity began in secondary school, where I organised internet safety workshops for schools as an ambassador of the Security Girl project. My interest gradually deepened, but I only got into CTF competitions later. My first bigger CTF was CyberGame, where I realised how much I enjoy this field.</p><p>Before that I mainly focused on building websites and computer networks, which gave me solid IT foundations that I now use in cybersecurity. In CTFs I'm most drawn to Web Security and OSINT, but I'm still building skills across different areas of IT.</p><p>Outside cybersecurity I enjoy computer games and chess — I played competitively from the age of five, became a three-time Slovak champion and finished 3rd at the EU Rapid Chess Championship.</p>",
+  "bio.varga": "<p>I'm fascinated by the dynamic between attacker and defender — it's like a never-ending operation in cyberspace. One side plans attacks and tries to break through the defences; the other has to react fast, analyse and defend. It reminds me of a strategy game where speed, creativity and detailed knowledge of the environment decide the outcome.</p><p>What I enjoy most is solving complex challenges in depth — analysing malicious code, hunting hidden vulnerabilities or modelling an entire attack step by step. My long-term goal is to work my way up among the very best in offensive security and pursue research at the level achieved today by the architects of national cyber operations.</p>",
+  "bio.gajdosik": "<p>What I enjoy about cybersecurity is that it demands a deep understanding of computer science itself as well as of the specific area you work in. I only truly got hooked on computer science once I understood how things actually work and was no longer just an ordinary user of technology. That, in turn, led me to security. Cybersecurity is essentially \"just\" the security of information technology — the things people use every day: phones, TVs and computers.</p>",
+  "ach.kicker": "achievements",
+  "ach.title": "What we've pulled off",
+  "ach.lead": "The 2025 season was our best yet. And we're just getting started.",
+  "ach.1.date": "October 2025",
+  "ach.1.text": "<b>4th place at ECSC in Warsaw</b> out of 40 countries — Slovakia's best result in history. During the Attack&amp;Defense day we were leading the whole scoreboard before it froze.",
+  "ach.2.date": "September 2025",
+  "ach.2.text": "<b>Qualified for DefCamp CTF</b> — the onsite final in the Hacking Village at the DefCamp conference in Bucharest.",
+  "ach.3.date": "March 2025",
+  "ach.3.text": "<b>1st place at Zero Days CTF in Dublin</b> — four team members conquered the Irish competition.",
+  "ach.4.date": "February 2025",
+  "ach.4.text": "<b>2nd place in the Guardians final</b> — four team members reached the final round.",
+  "ach.5.date": "All of 2025",
+  "ach.5.text": "<b>Training bootcamps</b> — a selection of 20 CyberGame players, an international bootcamp in Vienna and six weekend camps at the Brunovce manor.",
+  "ecsc.kicker": "the competition",
+  "ecsc.title": "What is ECSC?",
+  "ecsc.lead": "The European Cybersecurity Challenge is the unofficial European championship in hacking. It's organised by ENISA, the EU agency for cybersecurity, and every year it brings together the continent's best young cyber talent.",
+  "ecsc.c1.title": "A contest of nations",
+  "ecsc.c1.text": "Teams from ~40 European countries solve CTF challenges: web and network security, cryptography, reverse engineering, binary exploitation, forensics and hardware.",
+  "ecsc.c2.title": "The road leads through CyberGame",
+  "ecsc.c2.text": "The Slovak team is built from the best players of the national CyberGame competition run by SK-CERT. The official national contact point is the Cybersecurity Competence and Certification Centre.",
+  "ecsc.c3.title": "Training like a sport",
+  "ecsc.c3.text": "Bootcamps in Vienna and Brunovce, online CTFs all year round and mentoring from industry professionals. Representing your country is a team sport.",
+  "ecsc.cta1": "Play CyberGame ↗",
+  "hist.kicker": "history",
+  "hist.title": "Our journey across Europe",
+  "hist.lead": "From our first appearance in Vienna to fourth place in Warsaw.",
+  "hist.2022": "Vienna 🇦🇹 · Slovakia's first appearance",
+  "hist.2023": "Hamar 🇳🇴 · the final in Norway",
+  "hist.2024": "Turin 🇮🇹 · third appearance",
+  "hist.2025": "Warsaw 🇵🇱 · <b style=\"color:var(--red)\">4th place!</b>",
+  "gal.kicker": "gallery",
+  "gal.title": "Cyber moments",
+  "par.kicker": "partners",
+  "par.title": "They stand behind us",
+  "par.lead": "The official national contact point for ECSC in Slovakia is the Cybersecurity Competence and Certification Centre. The team is supported by these partners:",
+  "par.nbu": "state partner",
+  "par.nbu.name": "National Security Authority",
+  "aria.mainnav": "Main navigation",
+  "aria.brand": "Slovak Cyber Team — home",
+  "aria.profile": "Team member profile",
+  "aria.close": "Close",
+  "aria.lightbox": "Photo gallery",
+  "aria.prev": "Previous photo",
+  "aria.next": "Next photo",
+  "alt.heroPhoto": "Slovak Cyber Team with the Slovak flag at ECSC 2025 in Warsaw",
+  "alt.result": "ECSC 2025 final scoreboard — Slovakia in 4th place",
+  "alt.gal1": "The team forming a circle around the Slovak flag, drone shot",
+  "alt.gal2": "Training bootcamp at the Brunovce manor — the team at their laptops",
+  "alt.gal3": "Training camp in a chandeliered historic hall, players solving CTF challenges",
+  "alt.gal4": "Group selfie of teams at the international bootcamp with Czech, Slovak and Austrian flags",
+  "alt.gal5": "Official Team Slovakia 2024 roster",
+  "alt.gal6": "Team Slovakia with the Slovak flag before departing for Turin",
+  "alt.gal7": "The team on an orange tractor trailer with the Slovak flag",
+  "alt.gal8": "Official Team Slovakia 2023 roster",
+  "alt.gal9": "Nomination of the first Slovak team for ECSC 2022",
+  "par.note": "Want to support Slovakia's cyber talent? Get in touch — we'd love to welcome you among our partners.",
+  "join.title": "Are you 15–25 and into CTFs?",
+  "join.text": "The road to the national team leads through the CyberGame competition. Play, make the talent selection, survive the bootcamps — and next year it could be you holding the Slovak flag at the European final.",
+  "join.s1": "Sign up for CyberGame",
+  "join.s2": "Fight your way into the talent pool",
+  "join.s3": "Represent Slovakia at ECSC",
+  "join.cta1": "Play CyberGame ↗",
+  "join.cta2": "Message us ↗",
+  "foot.about": "Slovakia's national team at the European Cybersecurity Challenge. Hacking for Slovakia.",
+  "foot.site": "On this site",
+  "foot.funding": "Funded by the European Union. Views and opinions expressed are those of the author(s) only and do not necessarily reflect those of the European Union.",
+  "foot.copy": "© 2026 Cybersecurity Competence and Certification Centre. All rights reserved."
+};
+</script>
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
