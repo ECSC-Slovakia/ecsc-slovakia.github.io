@@ -109,6 +109,18 @@
     render();
   }
 
+  /* ---------- Achievements: collapse older entries ---------- */
+  const tl = document.querySelector('#uspechy .timeline');
+  const tlBtn = document.querySelector('.timeline-toggle');
+  if (tl && tlBtn && tl.children.length > 5) {
+    tl.classList.add('collapsed');
+    tlBtn.hidden = false;
+    tlBtn.addEventListener('click', () => {
+      const open = !tl.classList.toggle('collapsed');
+      tlBtn.setAttribute('aria-expanded', String(open));
+    });
+  }
+
   /* ---------- Member modal ---------- */
   const modal = document.getElementById('member-modal');
   if (modal) {
