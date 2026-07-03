@@ -23,7 +23,7 @@
   --card-shadow-hover: 0 4px 10px rgba(16, 28, 51, .10), 0 20px 44px rgba(16, 28, 51, .14);
 
   /* Type */
-  --font-pixel: 'Pixelify Sans', monospace;
+  --font-pixel: 'Jersey 10', monospace;
   --font-head: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 
@@ -771,6 +771,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
 }
 .site-footer h3 {
   font-family: var(--font-pixel);
+  font-weight: 400;
   font-size: 12px;
   letter-spacing: .1em;
   text-transform: uppercase;
@@ -844,7 +845,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
 .page-hero .hero__circuit { opacity: .4; }
 .page-hero__inner { position: relative; }
 .page-hero .kicker { color: #ff6b66; }
-.page-hero h1 { font-family: var(--font-pixel); font-size: clamp(30px, 5vw, 54px); margin-bottom: 10px; }
+.page-hero h1 { font-family: var(--font-pixel); font-weight: 400; font-size: clamp(30px, 5vw, 54px); margin-bottom: 10px; }
 .page-hero p { color: #b7c5e0; max-width: 700px; font-size: 17px; margin: 0; }
 
 .prose { max-width: 780px; }
