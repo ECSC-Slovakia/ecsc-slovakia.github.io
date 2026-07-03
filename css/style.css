@@ -228,8 +228,10 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
 .hero__wordmark::before {
   content: "";
   position: absolute;
-  inset: -34% -26%;
-  background: radial-gradient(ellipse 58% 58% at 50% 50%, rgba(10, 20, 40, 1) 48%, rgba(10, 20, 40, 0) 82%);
+  inset: -48% -36%;
+  background:
+    radial-gradient(ellipse 52% 52% at 50% 50%, rgba(10, 20, 40, 1) 52%, rgba(10, 20, 40, 0) 78%),
+    radial-gradient(ellipse 68% 68% at 50% 50%, rgba(10, 20, 40, .85) 40%, rgba(10, 20, 40, 0) 92%);
   pointer-events: none;
 }
 
