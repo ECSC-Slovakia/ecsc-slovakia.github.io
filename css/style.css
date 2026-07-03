@@ -217,10 +217,20 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
 }
 .hero__wordmark .w { color: #fff; display: block; }
 .hero__wordmark .r { color: var(--red); display: block; }
+.hero__wordmark { position: relative; }
 .hero__wordmark img {
+  position: relative;
   width: min(560px, 100%);
   height: auto;
   filter: drop-shadow(0 10px 40px rgba(0, 0, 0, .45));
+}
+/* soft navy halo that quiets the circuit pattern behind the logo */
+.hero__wordmark::before {
+  content: "";
+  position: absolute;
+  inset: -20% -16%;
+  background: radial-gradient(ellipse 55% 55% at 50% 50%, rgba(10, 20, 40, .97) 38%, rgba(10, 20, 40, 0) 74%);
+  pointer-events: none;
 }
 
 .hero__tagline {
