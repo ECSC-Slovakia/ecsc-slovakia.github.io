@@ -83,17 +83,15 @@
   const deck = document.getElementById('hero-deck');
   if (deck) {
     const cards = Array.from(deck.querySelectorAll('.deck-card'));
-    const counter = deck.querySelector('.deck-counter');
     const N = cards.length;
     let active = 0;
     const render = () => {
       cards.forEach((c, i) => {
         const k = (i - active + N) % N; // 0 = top of the deck
         c.style.zIndex = String(N - k);
-        c.style.transform = 'rotate(' + (1.5 + k * 2.1) + 'deg) translate(' + (k * 10) + 'px, ' + (k * -8) + 'px)';
+        c.style.transform = 'rotate(' + (1.5 + k * 1.6) + 'deg) translate(' + (k * 8) + 'px, ' + (k * -6) + 'px)';
         c.style.filter = k ? 'brightness(' + Math.max(0.5, 1 - k * 0.16) + ')' : '';
       });
-      if (counter) counter.textContent = (active + 1) + '/' + N;
     };
     const setFromX = (clientX) => {
       const r = deck.getBoundingClientRect();
