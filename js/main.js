@@ -40,8 +40,8 @@
     const phrases = () => {
       const lang = document.documentElement.lang || 'sk';
       return lang === 'sk'
-        ? ['hackujeme pre Slovensko_', 'crypto / pwn / web / forensics', 'TOP 4 v Európe 2025', './pridaj_sa --vek 15-25']
-        : ['hacking for Slovakia_', 'crypto / pwn / web / forensics', 'TOP 4 in Europe 2025', './join_us --age 15-25'];
+        ? ['reprezentujeme Slovensko_', 'crypto / pwn / web / rev / forensics', 'TOP 4 v Európe 2025', './pridaj_sa --vek 15-25']
+        : ['representing Slovakia_', 'crypto / pwn / web / rev / forensics', 'TOP 4 in Europe 2025', './join_us --age 15-25'];
     };
     const textNode = term.querySelector('.term-text');
     let pi = 0, ci = 0, deleting = false;

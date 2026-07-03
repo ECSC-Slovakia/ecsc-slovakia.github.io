@@ -5,6 +5,7 @@
     .n { fill: none; stroke: #2f7fe0; stroke-width: 2; }
     .nf { fill: #2f7fe0; }
     .nr { fill: none; stroke: #e2251f; stroke-width: 2; }
+    .nrf { fill: #e2251f; }
     .pulse { stroke: #7fb8ff; stroke-width: 2.5; fill: none; stroke-linecap: round;
              stroke-dasharray: 40 1200; animation: dash 9s linear infinite; }
     .pulse.p2 { animation-duration: 12s; animation-delay: -4s; stroke: #ff6b66; }
@@ -13,39 +14,41 @@
     @media (prefers-reduced-motion: reduce) { .pulse { animation: none; opacity: 0; } }
   </style>
 
-  <!-- traces, logo-style: 45° bends, node dots -->
-  <path class="t"  d="M-20 120 H180 L260 200 H420 L480 140 H700"/>
-  <path class="t2" d="M-20 260 H120 L200 340 H360 L440 260 H560 L640 340"/>
+  <!-- traces: lines stop at ring edges; corner nodes are filled pads -->
+  <path class="t"  d="M-20 120 H180 L260 200 H420 L480 140 H693"/>
+  <path class="t2" d="M-20 260 H120 L200 340 H360 L440 260 H560 L635 335"/>
   <path class="t"  d="M100 -20 V90 L180 170 V300"/>
-  <path class="t2" d="M320 -20 V60 L400 140 V240 L320 320 V420"/>
+  <path class="t2" d="M320 -20 V60 L400 140 V240 L320 320 V413"/>
   <path class="t"  d="M540 -20 V80 L620 160 H780 L860 80 V-20"/>
   <path class="t2" d="M700 800 V700 L780 620 H940 L1020 700 V800"/>
   <path class="t"  d="M900 -20 V120 L980 200 H1140 L1220 120 H1420"/>
-  <path class="t2" d="M1040 800 V640 L1120 560 H1280 L1360 480 H1420"/>
-  <path class="t"  d="M1420 260 H1300 L1220 340 H1060 L980 420 V560"/>
-  <path class="t2" d="M-20 480 H140 L220 560 H400 L480 480 H640 L720 560 V680"/>
-  <path class="t"  d="M-20 640 H100 L180 720 H340 L420 640 H560"/>
+  <path class="t2" d="M1040 800 V640 L1120 560 H1280 L1360 480 H1413"/>
+  <path class="t"  d="M1420 260 H1300 L1220 340 H1060 L980 420 V553"/>
+  <path class="t2" d="M-20 480 H140 L220 560 H400 L480 480 H640 L720 560 V673"/>
+  <path class="t"  d="M-20 640 H100 L180 720 H340 L420 640 H553"/>
   <path class="t2" d="M840 420 H960 L1040 340 V200"/>
   <path class="t"  d="M1180 800 V720 L1260 640 H1420"/>
-  <path class="t2" d="M600 800 V720 L520 640 V560"/>
+  <path class="t2" d="M600 800 V720 L520 640 V567"/>
 
   <!-- animated pulses ride selected traces -->
-  <path class="pulse"    d="M-20 120 H180 L260 200 H420 L480 140 H700"/>
-  <path class="pulse p2" d="M1420 260 H1300 L1220 340 H1060 L980 420 V560"/>
-  <path class="pulse p3" d="M-20 480 H140 L220 560 H400 L480 480 H640 L720 560 V680"/>
+  <path class="pulse"    d="M-20 120 H180 L260 200 H420 L480 140 H693"/>
+  <path class="pulse p2" d="M1420 260 H1300 L1220 340 H1060 L980 420 V553"/>
+  <path class="pulse p3" d="M-20 480 H140 L220 560 H400 L480 480 H640 L720 560 V673"/>
 
-  <!-- terminal nodes -->
+  <!-- terminal rings (line ends at ring edge) -->
   <circle class="n" cx="700" cy="140" r="7"/>
   <circle class="n" cx="640" cy="340" r="7"/>
-  <circle class="nf" cx="180" cy="300" r="5"/>
   <circle class="n" cx="320" cy="420" r="7"/>
-  <circle class="nr" cx="780" cy="160" r="7"/>
-  <circle class="n" cx="940" cy="620" r="7"/>
-  <circle class="nf" cx="1040" cy="200" r="5"/>
   <circle class="n" cx="980" cy="560" r="7"/>
   <circle class="nr" cx="560" cy="640" r="7"/>
   <circle class="n" cx="720" cy="680" r="7"/>
-  <circle class="nf" cx="840" cy="420" r="5"/>
   <circle class="n" cx="520" cy="560" r="7"/>
   <circle class="nr" cx="1420" cy="480" r="7"/>
+
+  <!-- filled pads at endpoints and corners -->
+  <circle class="nf" cx="180" cy="300" r="5"/>
+  <circle class="nrf" cx="780" cy="160" r="5"/>
+  <circle class="nf" cx="940" cy="620" r="5"/>
+  <circle class="nf" cx="1040" cy="200" r="5"/>
+  <circle class="nf" cx="840" cy="420" r="5"/>
 </svg>
