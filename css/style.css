@@ -429,6 +429,14 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
   background: linear-gradient(90deg, var(--blue) 0 50%, var(--red) 50% 100%);
 }
 .member__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.member__photo-alt {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .12s ease;
+}
+.member:hover .member__photo-alt,
+.member:focus-visible .member__photo-alt { opacity: 1; }
 
 .member__body { padding: 14px 16px 16px; }
 .member__name { font-family: var(--font-head); font-weight: 700; font-size: 17px; margin: 0; }
