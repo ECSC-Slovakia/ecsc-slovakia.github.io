@@ -235,6 +235,9 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
   pointer-events: none;
 }
 
+/* keep hero text above the logo halo (which is absolutely positioned) */
+.hero__tagline, .hero__term, .hero__cta { position: relative; }
+
 .hero__tagline {
   font-family: var(--font-head);
   font-size: clamp(17px, 2vw, 21px);
