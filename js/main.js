@@ -79,6 +79,38 @@
     });
   };
 
+  /* ---------- Hero photo deck ---------- */
+  const deck = document.getElementById('hero-deck');
+  if (deck) {
+    const cards = Array.from(deck.querySelectorAll('.deck-card'));
+    const counter = deck.querySelector('.deck-counter');
+    const N = cards.length;
+    let active = 0;
+    const render = () => {
+      cards.forEach((c, i) => {
+        const k = (i - active + N) % N; // 0 = top of the deck
+        c.style.zIndex = String(N - k);
+        c.style.transform = 'rotate(' + (1.5 + k * 2.1) + 'deg) translate(' + (k * 10) + 'px, ' + (k * -8) + 'px)';
+        c.style.filter = k ? 'brightness(' + Math.max(0.5, 1 - k * 0.16) + ')' : '';
+      });
+      if (counter) counter.textContent = (active + 1) + '/' + N;
+    };
+    const setFromX = (clientX) => {
+      const r = deck.getBoundingClientRect();
+      const t = Math.min(Math.max((clientX - r.left) / r.width, 0), 0.999);
+      const idx = Math.floor(t * N);
+      if (idx !== active) { active = idx; render(); }
+    };
+    deck.addEventListener('mousemove', (e) => setFromX(e.clientX));
+    deck.addEventListener('touchmove', (e) => setFromX(e.touches[0].clientX), { passive: true });
+    deck.addEventListener('click', () => { active = (active + 1) % N; render(); });
+    deck.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); active = (active + 1) % N; render(); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); active = (active - 1 + N) % N; render(); }
+    });
+    render();
+  }
+
   /* ---------- Member modal ---------- */
   const modal = document.getElementById('member-modal');
   if (modal) {

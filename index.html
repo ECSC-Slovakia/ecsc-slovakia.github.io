@@ -62,10 +62,29 @@
           <a class="btn btn--ghost" href="#tim" data-i18n="hero.cta2">Spoznaj tím</a>
         </div>
       </div>
-      <figure class="hero__photo">
-        <img src="assets/img/sk_tim_2025_wide.jpg" alt="Slovak Cyber Team so slovenskou vlajkou na ECSC 2025 vo Varšave" data-i18n-alt="alt.heroPhoto" width="768" height="654">
-        <figcaption data-i18n="hero.caption">ECSC 2025 · Varšava 🇵🇱</figcaption>
-      </figure>
+      <div class="hero__deck" id="hero-deck" tabindex="0" role="group" aria-roledescription="galéria" aria-label="Fotogaléria tímu — prejdi myšou alebo potiahni prstom" data-i18n-aria="aria.deck">
+        <figure class="deck-card">
+          <img src="assets/img/sk_tim_2025_wide.jpg" alt="Slovak Cyber Team so slovenskou vlajkou na ECSC 2025 vo Varšave" data-i18n-alt="alt.heroPhoto" width="768" height="654">
+          <figcaption data-i18n="deck.1">ECSC 2025 · Varšava 🇵🇱</figcaption>
+        </figure>
+        <figure class="deck-card">
+          <img src="assets/img/ecsc_2025.jpg" alt="Tím sformovaný do kruhu okolo slovenskej vlajky, záber z dronu" data-i18n-alt="alt.deck2" width="771" height="648" loading="lazy">
+          <figcaption data-i18n="deck.2">Tím 2025 z dronu 🚁</figcaption>
+        </figure>
+        <figure class="deck-card">
+          <img src="assets/img/ECSC_2024_05.jpeg" alt="Tím Slovakia so slovenskou vlajkou pred odletom do Turína" data-i18n-alt="alt.deck3" width="1600" height="1200" loading="lazy">
+          <figcaption data-i18n="deck.3">ECSC 2024 · Turín 🇮🇹</figcaption>
+        </figure>
+        <figure class="deck-card">
+          <img src="assets/img/ECSC_2024_03.jpeg" alt="Spoločné selfie tímov na medzinárodnom bootcampe s českou, slovenskou a rakúskou vlajkou" data-i18n-alt="alt.deck4" width="1600" height="1200" loading="lazy">
+          <figcaption data-i18n="deck.4">Bootcamp · Viedeň 🇦🇹</figcaption>
+        </figure>
+        <figure class="deck-card">
+          <img src="assets/img/ECSC_2024_06.jpeg" alt="Tím na oranžovom traktorovom vozíku so slovenskou vlajkou" data-i18n-alt="alt.deck5" width="1600" height="1200" loading="lazy">
+          <figcaption data-i18n="deck.5">Bootcamp · Brunovce 🚜</figcaption>
+        </figure>
+        <span class="deck-counter" aria-hidden="true">1/5</span>
+      </div>
     </div>
   </section>
 
@@ -481,6 +500,16 @@ window.I18N_EN = {
   "hero.cta1": "I want in",
   "hero.cta2": "Meet the team",
   "hero.caption": "ECSC 2025 · Warsaw 🇵🇱",
+  "aria.deck": "Team photo gallery — move your mouse over it or swipe",
+  "deck.1": "ECSC 2025 · Warsaw 🇵🇱",
+  "deck.2": "The 2025 team from above 🚁",
+  "deck.3": "ECSC 2024 · Turin 🇮🇹",
+  "deck.4": "Bootcamp · Vienna 🇦🇹",
+  "deck.5": "Bootcamp · Brunovce 🚜",
+  "alt.deck2": "The team forming a circle around the Slovak flag, drone shot",
+  "alt.deck3": "Team Slovakia with the Slovak flag before departing for Turin",
+  "alt.deck4": "Group selfie of teams at the international bootcamp with Czech, Slovak and Austrian flags",
+  "alt.deck5": "The team on an orange tractor trailer with the Slovak flag",
   "result.kicker": "Warsaw, Poland",
   "result.title": "4th place out of 40 countries — our best result ever",
   "result.text": "At the European final in Warsaw the team spent two days tackling CTF challenges in cryptography, binary exploitation, reverse engineering and forensics. During the Attack&amp;Defense day we were even sitting in first place before the scoreboard froze.",
