@@ -230,6 +230,29 @@
     if (pos === seq.length) { pos = 0; slotMachine(); }
   });
 
+  // touch variant: swipe ↑↑↓↓←→←→, then flip the language twice (the B-A)
+  const swipeSeq = ['U', 'U', 'D', 'D', 'L', 'R', 'L', 'R'];
+  let sPos = 0, sLang = 0, sX = 0, sY = 0, sT = 0;
+  let lastLang = document.documentElement.lang || 'sk';
+  document.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    sX = t.clientX; sY = t.clientY; sT = Date.now();
+  }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    const t = e.changedTouches[0];
+    const dx = t.clientX - sX, dy = t.clientY - sY;
+    if (Date.now() - sT > 700 || Math.max(Math.abs(dx), Math.abs(dy)) < 48) return; // tap or slow drag
+    const dir = Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? 'R' : 'L') : (dy > 0 ? 'D' : 'U');
+    sPos = (dir === swipeSeq[sPos]) ? sPos + 1 : (dir === swipeSeq[0] ? 1 : 0);
+    sLang = 0;
+  }, { passive: true });
+  document.addEventListener('sct:lang', (e) => {
+    const lang = (e.detail && e.detail.lang) || document.documentElement.lang;
+    if (lang === lastLang) return; // re-applying the active language doesn't count
+    lastLang = lang;
+    if (sPos === swipeSeq.length && ++sLang >= 2) { sPos = 0; sLang = 0; slotMachine(); }
+  });
+
   // [photo, name, year] — one entry per roster spot; the same person in
   // different years counts as a match, so a jackpot can span three ročníky
   const SLOT_FACES = [
