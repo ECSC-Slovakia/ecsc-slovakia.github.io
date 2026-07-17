@@ -211,14 +211,8 @@
     trapTab(lightbox);
   }
 
-  /* ---------- CTF easter egg ---------- */
-  const FLAG = 'SCT{v1t4j_v_t1me_n4p1s_n4m}';
   console.log(
     '%c\n  ███ SLOVAK CYBER TEAM ███\n',
     'color:#e2251f;font-family:monospace;font-size:16px;font-weight:bold'
-  );
-  console.log(
-    '%cZdravíme zvedavých. Presne takých hľadáme.\nGreetings, curious one. That\'s exactly who we\'re looking for.\n\n' + FLAG,
-    'color:#1b5db4;font-family:monospace;font-size:12px'
   );
 })();
