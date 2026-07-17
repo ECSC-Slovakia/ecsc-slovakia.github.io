@@ -1334,3 +1334,134 @@ html.turbo body::after { bottom: 0; }
 @media (prefers-reduced-motion: reduce) {
   html.turbo body::before, html.turbo body::after { animation: none; }
 }
+
+/* bank row: banana coin balance + the shop */
+.slots__bank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 0 12px;
+  flex-wrap: wrap;
+}
+.slots__bal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 17px;
+  color: #ffd23f;
+  background: #140b02;
+  border: 3px inset #8a6a1e;
+  border-radius: 8px;
+  padding: 4px 12px 5px;
+}
+.slots__bal img { width: 20px; height: 20px; }
+.slots__shop {
+  appearance: none;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  letter-spacing: .1em;
+  color: #2a0505;
+  background: linear-gradient(180deg, #ffd23f, #d4af37);
+  border: 3px outset #ffe9a0;
+  border-radius: 999px;
+  padding: 6px 16px 7px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #6d5010;
+}
+.slots__shop:hover { filter: brightness(1.08); }
+.slots__shop:active { transform: translateY(2px); box-shadow: 0 1px 0 #6d5010; }
+.slots__shop:disabled { opacity: .5; cursor: default; transform: none; box-shadow: 0 3px 0 #6d5010; }
+
+/* ==========================================================================
+   Cat-in-a-sack skins (matrix + vaporwave; 'turbo' above is the third)
+   ========================================================================== */
+
+html.skin-matrix {
+  --red: #22ff66;
+  --red-dark: #0c7a2f;
+  --blue: #22ff66;
+  --blue-bright: #7dffa8;
+  --blue-circuit: #0c7a2f;
+  --navy: #010801;
+  --navy-2: #04140a;
+  --ink: #b6ffce;
+  --ink-soft: #6fdd96;
+  --white: #020c04;
+  --paper: #04140a;
+  --line: #0c7a2f;
+  --card-shadow: 0 0 0 1px #0c7a2f, 0 0 18px rgba(34, 255, 102, .22);
+  --card-shadow-hover: 0 0 0 1px #22ff66, 0 0 28px rgba(34, 255, 102, .5);
+  --font-head: 'Courier New', monospace;
+  --font-body: 'Courier New', monospace;
+}
+html.skin-matrix body { background: #010801; }
+html.skin-matrix :is(h1, h2, h3, h4) { color: #22ff66; text-shadow: 0 0 12px rgba(34, 255, 102, .6); }
+html.skin-matrix :is(.modal__card, .modal__close, .timeline-toggle, .eu-strip, .site-nav) { background: #04140a; }
+html.skin-matrix .socials svg { fill: #b6ffce; }
+html.skin-matrix img:not(.slots img) { filter: grayscale(.5) sepia(1) hue-rotate(70deg) saturate(2.2) brightness(.92); }
+
+html.skin-vapor {
+  --red: #ff71ce;
+  --red-dark: #b967ff;
+  --blue: #01cdfe;
+  --blue-bright: #05ffa1;
+  --blue-circuit: #b967ff;
+  --navy: #2a1a5e;
+  --navy-2: #3b2a7a;
+  --ink: #2a1a5e;
+  --ink-soft: #7a68b8;
+  --white: #ffe6fb;
+  --paper: #e6f9ff;
+  --line: #ffb3ef;
+  --card-shadow: 0 4px 0 #ff71ce, 0 14px 34px rgba(185, 103, 255, .28);
+  --card-shadow-hover: 0 4px 0 #01cdfe, 0 18px 44px rgba(185, 103, 255, .45);
+  --font-head: var(--font-pixel);
+}
+html.skin-vapor body { background: linear-gradient(180deg, #ffe6fb, #e6f9ff 55%, #e6e0ff); }
+html.skin-vapor :is(h1, h2, h3, h4) { color: #b967ff; text-shadow: 2px 2px 0 #01cdfe; }
+html.skin-vapor :is(.modal__card, .modal__close, .timeline-toggle, .eu-strip, .site-nav) { background: #ffe6fb; }
+html.skin-vapor img:not(.slots img) { filter: saturate(1.6) contrast(1.05) hue-rotate(-12deg); }
+
+/* ==========================================================================
+   Anti-cheat: bluescreen + flying skulls
+   ========================================================================== */
+
+.bsod {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #0078d7;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6vw;
+  font-family: var(--font-pixel);
+  letter-spacing: .04em;
+  cursor: default;
+}
+.bsod__inner { max-width: 680px; }
+.bsod__face { font-size: 110px; line-height: 1; margin-bottom: 26px; }
+.bsod p { margin: 0 0 16px; font-size: 19px; line-height: 1.5; color: #dceafc; }
+.bsod code { font-family: inherit; font-size: 14px; background: rgba(255, 255, 255, .14); padding: 3px 10px; border-radius: 4px; }
+.bsod__hint { font-size: 14px; opacity: .8; }
+
+.skulls {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  overflow: hidden;
+}
+.skulls span {
+  position: absolute;
+  left: -60px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4C17 4 6 15 6 29c0 8 4 14 10 18v7c0 3 2 6 5 6h4v-6h4v6h6v-6h4v6h4c3 0 5-3 5-6v-7c6-4 10-10 10-18C58 15 47 4 32 4Z' fill='%23f4f7fc'/%3E%3Cellipse cx='21' cy='30' rx='6' ry='7' fill='%23101c33'/%3E%3Cellipse cx='43' cy='30' rx='6' ry='7' fill='%23101c33'/%3E%3Cpath d='M32 36l4 8h-8z' fill='%23101c33'/%3E%3C/svg%3E") center/contain no-repeat;
+  animation: skull-fly linear forwards;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, .5));
+}
+@keyframes skull-fly {
+  to { transform: translateX(calc(100vw + 140px)) rotate(360deg); }
+}

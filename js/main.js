@@ -300,28 +300,138 @@
 
   let slots = null;
   function slotMachine() {
+    if (busted) { bluescreen(); return; } // cheaters don't get to play
     if (!slots) slots = buildSlotMachine();
     slots.open();
   }
 
-  // banana on the payline (~1/100) → the machine takes over the whole site
-  const TURBO_KEY = 'sct-turbo';
-  function turboOn() {
-    document.documentElement.classList.add('turbo');
-    try { sessionStorage.setItem(TURBO_KEY, '1'); } catch (e) { /* private mode */ }
-    if (document.querySelector('.turbo-off')) return;
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'turbo-off';
-    b.textContent = 'TURBO OFF';
-    b.addEventListener('click', () => {
-      document.documentElement.classList.remove('turbo');
-      try { sessionStorage.removeItem(TURBO_KEY); } catch (e) {}
-      b.remove();
-    });
-    document.body.appendChild(b);
+  /* ---- skins (the cat in the sack) ---- */
+  const SKIN_KEY = 'sct-skin';
+  const SKINS = ['turbo', 'skin-matrix', 'skin-vapor'];
+  const SKIN_NAMES = { 'turbo': 'GAMBA VEGAS', 'skin-matrix': 'MATRIX', 'skin-vapor': 'VAPORWAVE' };
+  function applySkin(name) {
+    SKINS.forEach((s) => document.documentElement.classList.remove(s));
+    if (name) document.documentElement.classList.add(name);
+    try {
+      if (name) localStorage.setItem(SKIN_KEY, name);
+      else localStorage.removeItem(SKIN_KEY);
+    } catch (e) { /* private mode */ }
+    let off = document.querySelector('.turbo-off');
+    if (name && !off) {
+      off = document.createElement('button');
+      off.type = 'button';
+      off.className = 'turbo-off';
+      off.textContent = 'SKIN OFF';
+      off.addEventListener('click', () => applySkin(null));
+      document.body.appendChild(off);
+    }
+    if (!name && off) off.remove();
   }
-  try { if (sessionStorage.getItem(TURBO_KEY)) turboOn(); } catch (e) {}
+  try { if (SKINS.indexOf(localStorage.getItem(SKIN_KEY)) !== -1) applySkin(localStorage.getItem(SKIN_KEY)); } catch (e) {}
+
+  /* ---- banana coin bank — the balance sits right there in localStorage ---- */
+  const BANK_KEY = 'sct-banana';
+  const SEAL_KEY = 'sct-cache';
+  const CHEAT_KEY = 'sct-telemetry';
+  const MACKA_PRICE = 100;
+  let bananas = 0;
+  let busted = false;
+  let skullsOn = false;
+  const seal = (n) => {
+    let h = 5381;
+    const s = 'sct/banan/' + n;
+    for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0;
+    return h.toString(36);
+  };
+  const writeBank = (v) => {
+    bananas = Math.max(0, v | 0);
+    try {
+      localStorage.setItem(BANK_KEY, String(bananas));
+      localStorage.setItem(SEAL_KEY, seal(bananas));
+    } catch (e) {}
+  };
+  try {
+    const raw = localStorage.getItem(BANK_KEY);
+    if (raw !== null) {
+      const v = parseInt(raw, 10) || 0;
+      if (localStorage.getItem(SEAL_KEY) === seal(v)) bananas = v;
+      else if (v >= MACKA_PRICE) bust(); // walked in with a forged fortune
+      else writeBank(0);
+    }
+  } catch (e) {}
+
+  // the quiet part: a big balance jump that didn't come from the reels ends badly
+  setInterval(() => {
+    if (busted) return;
+    try {
+      const raw = localStorage.getItem(BANK_KEY);
+      if (raw === String(bananas)) return;
+      const v = parseInt(raw, 10) || 0;
+      if (localStorage.getItem(SEAL_KEY) === seal(v)) { bananas = v; return; } // another tab, fair play
+      if (Math.abs(v - bananas) >= MACKA_PRICE) bust();
+      else writeBank(bananas); // small fiddling gets quietly reverted
+    } catch (e) {}
+  }, 1500);
+  try { if (localStorage.getItem(CHEAT_KEY) === '1') { busted = true; skulls(); } } catch (e) {}
+
+  function bust() {
+    if (busted) return;
+    busted = true;
+    try { localStorage.setItem(CHEAT_KEY, '1'); } catch (e) {}
+    skulls();
+    bluescreen();
+  }
+
+  function skulls() {
+    if (skullsOn || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    skullsOn = true;
+    const holder = document.createElement('div');
+    holder.className = 'skulls';
+    document.body.appendChild(holder);
+    setInterval(() => {
+      if (holder.childElementCount >= 12) return;
+      const s = document.createElement('span');
+      const size = 22 + Math.random() * 26;
+      s.style.top = (Math.random() * 92) + 'vh';
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.animationDuration = (3.5 + Math.random() * 5) + 's';
+      s.addEventListener('animationend', () => s.remove());
+      holder.appendChild(s);
+    }, 650);
+  }
+
+  function bluescreen() {
+    if (document.querySelector('.bsod')) return;
+    const sk = (document.documentElement.lang || 'sk').startsWith('sk');
+    const d = document.createElement('div');
+    d.className = 'bsod';
+    d.innerHTML =
+      '<div class="bsod__inner"><div class="bsod__face">:(</div>' +
+      '<p>' + (sk
+        ? 'Tvoj automat narazil na fatálnu chybu a musel byť reštartovaný. Zbierame informácie o tvojom podvode…'
+        : 'Your slot machine ran into a fatal problem and had to be restarted. We are collecting information about your cheating…') +
+      ' <b class="bsod__pct">0%</b></p>' +
+      '<p><code>STOP: 0xB4NAN — SKIBIDI_ANTICHEAT_VIOLATION</code></p>' +
+      '<p class="bsod__hint">' + (sk ? 'Stlač čokoľvek. (Nepomôže to.)' : 'Press anything. (It will not help.)') + '</p></div>';
+    document.body.appendChild(d);
+    const pct = d.querySelector('.bsod__pct');
+    let p = 0;
+    const iv = setInterval(() => {
+      p = Math.min(100, p + 1 + Math.floor(Math.random() * 9));
+      pct.textContent = p + '%';
+      if (p >= 100) clearInterval(iv);
+    }, 220);
+    const dismiss = () => {
+      clearInterval(iv);
+      d.remove();
+      document.removeEventListener('keydown', dismiss, true);
+    };
+    setTimeout(() => {
+      d.addEventListener('click', dismiss);
+      document.addEventListener('keydown', dismiss, true);
+    }, 1200);
+  }
 
   function buildSlotMachine() {
     const L = SLOT_FACES.length;
@@ -350,6 +460,10 @@
         '<div class="slots__head"><span class="slots__title">SKIBIDI CYBERTEAM GAMBA</span><span class="slots__sub">2022–2025</span></div>' +
         '<div class="slots__reels">' + '<div class="slots__reel"><div class="slots__strip"></div></div>'.repeat(3) + '</div>' +
         '<div class="slots__marquee" aria-hidden="true"><span>' + marqueeText + '</span><span>' + marqueeText + '</span></div>' +
+        '<div class="slots__bank">' +
+          '<span class="slots__bal"><img src="assets/img/banana.svg" alt="Banánové coiny"><b>0</b></span>' +
+          '<button type="button" class="slots__shop"></button>' +
+        '</div>' +
         '<p class="slots__status" aria-live="polite"></p>' +
         '<button type="button" class="slots__spin"></button>' +
         '<button type="button" class="slots__lever" aria-label="Zatoč / Spin">' +
@@ -364,6 +478,12 @@
     const strips = reelEls.map((r) => r.querySelector('.slots__strip'));
     const statusEl = el.querySelector('.slots__status');
     const spinBtn = el.querySelector('.slots__spin');
+    const balEl = el.querySelector('.slots__bal b');
+    const shopBtn = el.querySelector('.slots__shop');
+    const updateBank = () => {
+      balEl.textContent = String(bananas);
+      shopBtn.disabled = bananas < MACKA_PRICE;
+    };
     const current = reelEls.map(() => Math.floor(Math.random() * L));
     let spinning = false;
     let lastFocus = null;
@@ -417,26 +537,28 @@
 
     const finish = (targets) => {
       if (targets.indexOf(BANANA) !== -1) {
+        // pays exactly one cat in a sack
         machine.classList.add('slots--jackpot');
-        statusEl.textContent = t('BANÁN! GIGA TURBO MÓD!', 'BANANA! GIGA TURBO MODE!');
+        writeBank(bananas + MACKA_PRICE);
+        statusEl.textContent = t('BANÁN! +' + MACKA_PRICE + ' banánov!', 'BANANA! +' + MACKA_PRICE + ' bananas!');
         coinRain();
-        turboOn();
-        spinning = false;
-        spinBtn.disabled = false;
-        return;
-      }
-      const names = targets.map((i) => SLOT_FACES[i][1]);
-      if (names[0] === names[1] && names[0] === names[2]) {
-        machine.classList.add('slots--jackpot');
-        statusEl.textContent = '★ JACKPOT! 3× ' + names[0] + ' ★';
-        coinRain();
-      } else if (names[0] === names[1] || names[0] === names[2] || names[1] === names[2]) {
-        statusEl.textContent = t('Tesne! Dvaja rovnakí…', 'So close! Two of a kind…');
       } else {
-        statusEl.textContent = targets
-          .map((i) => SLOT_FACES[i][1].split(' ').pop() + ' ’' + SLOT_FACES[i][2])
-          .join(' · ');
+        const names = targets.map((i) => SLOT_FACES[i][1]);
+        if (names[0] === names[1] && names[0] === names[2]) {
+          machine.classList.add('slots--jackpot');
+          writeBank(bananas + 25);
+          statusEl.textContent = '★ JACKPOT! 3× ' + names[0] + ' +25 ★';
+          coinRain();
+        } else if (names[0] === names[1] || names[0] === names[2] || names[1] === names[2]) {
+          writeBank(bananas + 5);
+          statusEl.textContent = t('Dvaja rovnakí! +5', 'Two of a kind! +5');
+        } else {
+          statusEl.textContent = targets
+            .map((i) => SLOT_FACES[i][1].split(' ').pop() + ' ’' + SLOT_FACES[i][2])
+            .join(' · ');
+        }
       }
+      updateBank();
       spinning = false;
       spinBtn.disabled = false;
     };
@@ -490,6 +612,8 @@
       document.body.style.overflow = 'hidden';
       statusEl.textContent = t('Traja rovnakí = JACKPOT', 'Three of a kind = JACKPOT');
       spinBtn.textContent = t('ŠTART', 'SPIN');
+      shopBtn.textContent = t('MAČKA VO VRECI · 100', 'CAT IN A SACK · 100');
+      updateBank();
       spinBtn.focus();
     };
     const close = () => {
@@ -498,8 +622,19 @@
       if (lastFocus && lastFocus.focus) lastFocus.focus();
     };
 
+    const buy = () => {
+      if (busted || spinning || bananas < MACKA_PRICE) return;
+      writeBank(bananas - MACKA_PRICE);
+      const skin = SKINS[Math.floor(Math.random() * SKINS.length)];
+      applySkin(skin);
+      statusEl.textContent = t('MŇAU! Vo vreci bola: ', 'MEOW! The sack contained: ') + SKIN_NAMES[skin];
+      updateBank();
+      coinRain();
+    };
+
     spinBtn.addEventListener('click', spin);
     lever.addEventListener('click', spin);
+    shopBtn.addEventListener('click', buy);
     el.querySelector('.slots__close').addEventListener('click', close);
     el.addEventListener('click', (e) => { if (e.target === el) close(); });
     document.addEventListener('keydown', (e) => {
