@@ -222,34 +222,268 @@
     'color:#1b5db4;font-family:monospace;font-size:12px'
   );
 
-  // Konami code → brief matrix rain
+  // Konami code → slot machine where the fruit is us (rosters 2022–2025)
   const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
   let pos = 0;
   document.addEventListener('keydown', (e) => {
     pos = (e.key === seq[pos]) ? pos + 1 : (e.key === seq[0] ? 1 : 0);
-    if (pos === seq.length) { pos = 0; matrixRain(); }
+    if (pos === seq.length) { pos = 0; slotMachine(); }
   });
-  function matrixRain() {
-    if (document.getElementById('mrain')) return;
-    const c = document.createElement('canvas');
-    c.id = 'mrain';
-    c.style.cssText = 'position:fixed;inset:0;z-index:999;pointer-events:none';
-    document.body.appendChild(c);
-    const ctx = c.getContext('2d');
-    c.width = innerWidth; c.height = innerHeight;
-    const cols = Math.floor(c.width / 16);
-    const drops = Array(cols).fill(0);
-    const chars = '01SCTECSC{}#$&@!<>/\\';
-    const iv = setInterval(() => {
-      ctx.fillStyle = 'rgba(10,20,40,0.12)';
-      ctx.fillRect(0, 0, c.width, c.height);
-      ctx.font = '15px monospace';
-      drops.forEach((y, i) => {
-        ctx.fillStyle = Math.random() > 0.92 ? '#e2251f' : '#2f7fe0';
-        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 16, y * 16);
-        drops[i] = (y * 16 > c.height && Math.random() > 0.97) ? 0 : y + 1;
+
+  // [photo, name, year] — one entry per roster spot; the same person in
+  // different years counts as a match, so a jackpot can span three ročníky
+  const SLOT_FACES = [
+    ['seman22.jpg', 'Kevin Seman', 22],
+    ['bittara22.jpg', 'Jakub Bittara', 22],
+    ['csibrei22.jpg', 'Roland Csibrei', 22],
+    ['geleta22.jpg', 'Marek Geleta', 22],
+    ['kovacik22.jpg', 'Michal Kováčik', 22],
+    ['lepies22.jpg', 'Ivan Lepieš', 22],
+    ['loksa22.jpg', 'Tomáš Lokša', 22],
+    ['marci22.jpg', 'Tomáš Marci', 22],
+    ['melnicek22.jpg', 'Peter Melniček', 22],
+    ['proks22.jpg', 'Tomáš Proks', 22],
+    ['michalovic.jpg', 'Martin Mihalovič', 23],
+    ['corba.jpg', 'Jakub Čorba', 23],
+    ['geleta-1.jpg', 'Marek Geleta', 23],
+    ['hadara.jpg', 'Adam Hadar', 23],
+    ['janotkova.jpg', 'Tamara Janotková', 23],
+    ['kolencik-1.jpg', 'Dušan Kolenčík', 23],
+    ['las.jpg', 'Matej Laš', 23],
+    ['lepies-1.jpg', 'Ivan Lepieš', 23],
+    ['proks-1.jpg', 'Tomáš Proks', 23],
+    ['zilincik-1.jpg', 'Richard Steven Žilinčík', 23],
+    ['geleta.jpg', 'Marek Geleta', 24],
+    ['hadar.jpg', 'Adam Hadar', 24],
+    ['kolencik.jpg', 'Dušan Kolenčík', 24],
+    ['lepies.jpg', 'Ivan Lepieš', 24],
+    ['mandzak.jpg', 'Matúš Mandzák', 24],
+    ['polan.jpg', 'Alex Polan', 24],
+    ['proks.jpg', 'Tomáš Proks', 24],
+    ['subjakova.jpg', 'Kristína Šubjaková', 24],
+    ['zilincik.jpg', 'Richard Steven Žilinčík', 24],
+    ['zuber.jpg', 'Jakub Ján Zuber', 24],
+    ['geleta1.png', 'Marek Geleta', 25],
+    ['andras1.png', 'Vladimír Andráš', 25],
+    ['bohuslavskyi1.png', 'Nikita Bohuslavskyi', 25],
+    ['hadar1.png', 'Adam Hadar', 25],
+    ['kolencik1.png', 'Dušan Kolenčík', 25],
+    ['lepies1.png', 'Ivan Lepieš', 25],
+    ['lichvar1.png', 'Oliver Lichvár', 25],
+    ['mandzak1.png', 'Matúš Mandzák', 25],
+    ['subjakova1.png', 'Kristína Šubjaková', 25],
+    ['varga1.png', 'Samuel Varga', 25],
+  ];
+
+  let slots = null;
+  function slotMachine() {
+    if (!slots) slots = buildSlotMachine();
+    slots.open();
+  }
+
+  // banana on the payline (~1/100) → the machine takes over the whole site
+  const TURBO_KEY = 'sct-turbo';
+  function turboOn() {
+    document.documentElement.classList.add('turbo');
+    try { sessionStorage.setItem(TURBO_KEY, '1'); } catch (e) { /* private mode */ }
+    if (document.querySelector('.turbo-off')) return;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'turbo-off';
+    b.textContent = 'TURBO OFF';
+    b.addEventListener('click', () => {
+      document.documentElement.classList.remove('turbo');
+      try { sessionStorage.removeItem(TURBO_KEY); } catch (e) {}
+      b.remove();
+    });
+    document.body.appendChild(b);
+  }
+  try { if (sessionStorage.getItem(TURBO_KEY)) turboOn(); } catch (e) {}
+
+  function buildSlotMachine() {
+    const L = SLOT_FACES.length;
+    const BANANA = L; // special symbol index, never hit by the normal random pool
+    const t = (skStr, enStr) =>
+      (document.documentElement.lang || 'sk').startsWith('sk') ? skStr : enStr;
+    const cellHTML = (i) => {
+      if (i === BANANA) {
+        return '<figure class="slots__cell slots__cell--banana"><img src="assets/img/banana.svg" alt="Banán">' +
+          '<figcaption>TURBO</figcaption></figure>';
+      }
+      const f = SLOT_FACES[i];
+      return '<figure class="slots__cell"><img src="assets/img/' + f[0] + '" alt="' + f[1] + '">' +
+        '<figcaption>’' + f[2] + '</figcaption></figure>';
+    };
+
+    const el = document.createElement('div');
+    el.className = 'slots';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-modal', 'true');
+    el.setAttribute('aria-label', 'Skibidi Cyberteam Gamba');
+    const marqueeText = '★ GIGA VÝHRY ★ GIGA VÝHRY ★ GIGA VÝHRY ★ GIGA VÝHRY ';
+    el.innerHTML =
+      '<div class="slots__machine">' +
+        '<div class="slots__lights" aria-hidden="true">' + '<i></i>'.repeat(14) + '</div>' +
+        '<div class="slots__head"><span class="slots__title">SKIBIDI CYBERTEAM GAMBA</span><span class="slots__sub">2022–2025</span></div>' +
+        '<div class="slots__reels">' + '<div class="slots__reel"><div class="slots__strip"></div></div>'.repeat(3) + '</div>' +
+        '<div class="slots__marquee" aria-hidden="true"><span>' + marqueeText + '</span><span>' + marqueeText + '</span></div>' +
+        '<p class="slots__status" aria-live="polite"></p>' +
+        '<button type="button" class="slots__spin"></button>' +
+        '<button type="button" class="slots__lever" aria-label="Zatoč / Spin">' +
+          '<span class="slots__lever-arm"></span><span class="slots__lever-base"></span>' +
+        '</button>' +
+        '<button type="button" class="slots__close" aria-label="Zavrieť / Close">✕</button>' +
+      '</div>';
+    document.body.appendChild(el);
+
+    const machine = el.querySelector('.slots__machine');
+    const reelEls = Array.from(el.querySelectorAll('.slots__reel'));
+    const strips = reelEls.map((r) => r.querySelector('.slots__strip'));
+    const statusEl = el.querySelector('.slots__status');
+    const spinBtn = el.querySelector('.slots__spin');
+    const current = reelEls.map(() => Math.floor(Math.random() * L));
+    let spinning = false;
+    let lastFocus = null;
+
+    SLOT_FACES.forEach((f) => { new Image().src = 'assets/img/' + f[0]; });
+    new Image().src = 'assets/img/banana.svg';
+
+    const setStill = (i) => {
+      strips[i].style.transition = 'none';
+      strips[i].style.transform = 'translateY(0)';
+      strips[i].innerHTML = cellHTML(current[i]);
+    };
+    current.forEach((_, i) => setStill(i));
+
+    // people with roster photos from more than one year → jackpot can be
+    // the same face, three different ročníky
+    const veterans = (() => {
+      const count = {};
+      SLOT_FACES.forEach((f) => { count[f[1]] = (count[f[1]] || 0) + 1; });
+      return Object.keys(count).filter((n) => count[n] > 1);
+    })();
+
+    const pickTargets = () => {
+      let targets;
+      // every slot machine is rigged; this one in the player's favour
+      if (Math.random() < 0.18) {
+        const person = veterans[Math.floor(Math.random() * veterans.length)];
+        const photos = SLOT_FACES.map((f, i) => (f[1] === person ? i : -1)).filter((i) => i >= 0);
+        targets = reelEls.map(() => photos[Math.floor(Math.random() * photos.length)]);
+      } else {
+        targets = reelEls.map(() => Math.floor(Math.random() * L));
+      }
+      if (Math.random() < 0.01) targets[Math.floor(Math.random() * targets.length)] = BANANA;
+      return targets;
+    };
+
+    const coinRain = () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const holder = document.createElement('div');
+      holder.className = 'slots__coins';
+      for (let i = 0; i < 26; i++) {
+        const s = document.createElement('span');
+        s.style.left = (Math.random() * 100) + '%';
+        s.style.animationDelay = (Math.random() * .9) + 's';
+        s.style.fontSize = (16 + Math.random() * 22) + 'px';
+        holder.appendChild(s);
+      }
+      el.appendChild(holder);
+      setTimeout(() => holder.remove(), 3400);
+    };
+
+    const finish = (targets) => {
+      if (targets.indexOf(BANANA) !== -1) {
+        machine.classList.add('slots--jackpot');
+        statusEl.textContent = t('BANÁN! GIGA TURBO MÓD!', 'BANANA! GIGA TURBO MODE!');
+        coinRain();
+        turboOn();
+        spinning = false;
+        spinBtn.disabled = false;
+        return;
+      }
+      const names = targets.map((i) => SLOT_FACES[i][1]);
+      if (names[0] === names[1] && names[0] === names[2]) {
+        machine.classList.add('slots--jackpot');
+        statusEl.textContent = '★ JACKPOT! 3× ' + names[0] + ' ★';
+        coinRain();
+      } else if (names[0] === names[1] || names[0] === names[2] || names[1] === names[2]) {
+        statusEl.textContent = t('Tesne! Dvaja rovnakí…', 'So close! Two of a kind…');
+      } else {
+        statusEl.textContent = targets
+          .map((i) => SLOT_FACES[i][1].split(' ').pop() + ' ’' + SLOT_FACES[i][2])
+          .join(' · ');
+      }
+      spinning = false;
+      spinBtn.disabled = false;
+    };
+
+    const lever = el.querySelector('.slots__lever');
+    const spin = () => {
+      if (spinning) return;
+      spinning = true;
+      spinBtn.disabled = true;
+      machine.classList.remove('slots--jackpot');
+      lever.classList.add('is-pulled');
+      setTimeout(() => lever.classList.remove('is-pulled'), 550);
+      statusEl.textContent = '···';
+      const targets = pickTargets();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        targets.forEach((tg, i) => { current[i] = tg; setStill(i); });
+        finish(targets);
+        return;
+      }
+      let landed = 0;
+      targets.forEach((tg, i) => {
+        const reel = reelEls[i];
+        const strip = strips[i];
+        const cellH = reel.clientHeight;
+        const travel = (1 + i) * L + 13 + i * 7;
+        const startFace = current[i] < L ? current[i] : Math.floor(L / 2);
+        let html = cellHTML(current[i]);
+        for (let k = 1; k < travel; k++) html += cellHTML((startFace + k) % L);
+        html += cellHTML(tg);
+        strip.innerHTML = html;
+        strip.style.transition = 'none';
+        strip.style.transform = 'translateY(0)';
+        reel.classList.add('is-spinning');
+        void strip.offsetHeight; // flush styles so the transition animates
+        const dur = 1600 + i * 700;
+        strip.style.transition = 'transform ' + dur + 'ms cubic-bezier(.15, .75, .2, 1)';
+        strip.style.transform = 'translateY(' + (-travel * cellH) + 'px)';
+        setTimeout(() => {
+          current[i] = tg;
+          reel.classList.remove('is-spinning');
+          setStill(i);
+          if (++landed === targets.length) finish(targets);
+        }, dur + 80);
       });
-    }, 50);
-    setTimeout(() => { clearInterval(iv); c.remove(); }, 6000);
+    };
+
+    const open = () => {
+      if (el.classList.contains('open')) { spin(); return; } // Konami again = pull the lever
+      lastFocus = document.activeElement;
+      el.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      statusEl.textContent = t('Traja rovnakí = JACKPOT', 'Three of a kind = JACKPOT');
+      spinBtn.textContent = t('ŠTART', 'SPIN');
+      spinBtn.focus();
+    };
+    const close = () => {
+      el.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    };
+
+    spinBtn.addEventListener('click', spin);
+    lever.addEventListener('click', spin);
+    el.querySelector('.slots__close').addEventListener('click', close);
+    el.addEventListener('click', (e) => { if (e.target === el) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && el.classList.contains('open')) close();
+    });
+    trapTab(el);
+
+    return { open };
   }
 })();
