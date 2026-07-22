@@ -211,6 +211,59 @@
     trapTab(lightbox);
   }
 
+  /* ---------- Cameo requests from the team thread ---------- */
+  // Marcinčák: double-wide card, but only when it keeps every grid row complete
+  const epicCard = document.querySelector('.member--epic');
+  const teamGrid = document.querySelector('.team-grid');
+  if (epicCard && teamGrid) {
+    const applyEpic = () => {
+      const cols = getComputedStyle(teamGrid).gridTemplateColumns.split(' ').length;
+      const cards = teamGrid.querySelectorAll('.member').length;
+      // wide card occupies 2 cells -> rows stay complete only if (cards + 1) divides evenly
+      epicCard.classList.toggle('epic-wide', cols >= 2 && (cards + 1) % cols === 0);
+    };
+    if ('ResizeObserver' in window) new ResizeObserver(applyEpic).observe(teamGrid);
+    window.addEventListener('resize', applyEpic);
+    applyEpic();
+  }
+
+  // Ondrejčák: clicking his card toggles a banana cursor
+  const bananaCard = document.getElementById('card-ondrejcak');
+  if (bananaCard) {
+    bananaCard.style.cursor = 'pointer';
+    bananaCard.addEventListener('click', () => document.body.classList.toggle('banana-cursor'));
+  }
+
+  // Andráš: metal pipe hit on hover (browsers only allow audio after the first click on the page)
+  const pipeCard = document.getElementById('card-andras');
+  if (pipeCard && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let pipeCtx = null;
+    let lastHit = 0;
+    const clang = () => {
+      try {
+        pipeCtx = pipeCtx || new (window.AudioContext || window.webkitAudioContext)();
+        if (pipeCtx.state === 'suspended') pipeCtx.resume();
+        const t = pipeCtx.currentTime;
+        [312, 523, 1077, 1584, 2137, 3571].forEach((f, i) => {
+          const o = pipeCtx.createOscillator();
+          const g = pipeCtx.createGain();
+          o.type = i < 2 ? 'triangle' : 'square';
+          o.frequency.value = f;
+          g.gain.setValueAtTime(0.14 / (i + 1), t);
+          g.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+          o.connect(g);
+          g.connect(pipeCtx.destination);
+          o.start(t);
+          o.stop(t + 1.2);
+        });
+      } catch (e) { /* no audio, no problem */ }
+    };
+    pipeCard.addEventListener('mouseenter', () => {
+      const now = Date.now();
+      if (now - lastHit > 900) { lastHit = now; clang(); }
+    });
+  }
+
   console.log(
     '%c\n  ███ SLOVAK CYBER TEAM ███\n',
     'color:#e2251f;font-family:monospace;font-size:16px;font-weight:bold'

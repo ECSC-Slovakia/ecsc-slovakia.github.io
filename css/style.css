@@ -434,9 +434,42 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
   inset: 0;
   opacity: 0;
   transition: opacity .12s ease;
+  /* opaque backdrop so transparent PNGs don't show the main photo through */
+  background: linear-gradient(160deg, #eef3fb, #e4ebf7);
 }
 .member:hover .member__photo-alt,
 .member:focus-visible .member__photo-alt { opacity: 1; }
+
+/* ---- cameo requests from the team thread ---- */
+/* Marcinčák: hue border; goes double-wide only when it keeps grid rows complete (see main.js) */
+.member--epic.epic-wide { grid-column: span 2; }
+.member--epic.epic-wide .member__photo { aspect-ratio: 2 / 1; }
+.member--epic {
+  outline: 3px solid transparent;
+  outline-offset: -1px;
+  transition: outline-color .2s ease, box-shadow .2s ease;
+}
+.member--epic:hover,
+.member--epic:focus-within {
+  animation: epic-hue 5s linear infinite;
+}
+@keyframes epic-hue {
+  0%   { outline-color: hsl(0 85% 55%);   box-shadow: 0 0 16px hsl(0 85% 55% / .35); }
+  25%  { outline-color: hsl(90 80% 42%);  box-shadow: 0 0 16px hsl(90 80% 42% / .35); }
+  50%  { outline-color: hsl(180 80% 42%); box-shadow: 0 0 16px hsl(180 80% 42% / .35); }
+  75%  { outline-color: hsl(270 80% 55%); box-shadow: 0 0 16px hsl(270 80% 55% / .35); }
+  100% { outline-color: hsl(360 85% 55%); box-shadow: 0 0 16px hsl(360 85% 55% / .35); }
+}
+
+/* Varga: monochrome (courtesy of Ondrejčák) */
+.member--varga .member__photo > img:first-of-type { filter: grayscale(1); }
+.member--varga .member__photo-alt { z-index: 2; }
+
+/* Ondrejčák: banana cursor, toggled by clicking his card */
+.banana-cursor,
+.banana-cursor * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%8D%8C%3C/text%3E%3C/svg%3E") 6 6, auto !important;
+}
 
 .member__body { padding: 14px 16px 16px; }
 .member__name { font-family: var(--font-head); font-weight: 700; font-size: 17px; margin: 0; }
