@@ -461,8 +461,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
   100% { outline-color: hsl(360 85% 55%); box-shadow: 0 0 16px hsl(360 85% 55% / .35); }
 }
 
-/* Varga: monochrome (courtesy of Ondrejčák) */
-.member--varga .member__photo > img:first-of-type { filter: grayscale(1); }
+/* Varga: alt photo sits above the main one on hover */
 .member--varga .member__photo-alt { z-index: 2; }
 
 /* Ondrejčák: banana cursor, toggled by clicking his card */
