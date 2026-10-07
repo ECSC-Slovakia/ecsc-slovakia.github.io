@@ -672,7 +672,8 @@ h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.15; margin: 0 0 .
 .gallery a:hover::after { opacity: 1; background: rgba(10, 20, 40, .45); }
 
 .gallery-video {
-  margin-top: 14px;
+  max-width: 760px;
+  margin: 28px auto 0;
   border-radius: 10px;
   overflow: hidden;
   background: #000;
